@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "outDir": "./public/application",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "module": "es6",
+        "target": "es5",
+        "jsx": "react",
+        "strict": true,
+        "baseUrl": "resources/app",
+        "paths": {
+            "Component": ["component/*"]
+        }
+    }
+}
