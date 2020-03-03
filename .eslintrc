@@ -7,7 +7,9 @@
     "env": {
         "browser": true
     },
-    "parser": "babel-eslint",
+    "parserOptions": {
+        "parser": "@typescript-eslint/parser"
+    },
     "globals": {
         "window": true,
         "document": true,

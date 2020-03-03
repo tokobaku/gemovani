@@ -38,7 +38,6 @@ export default class AppRouter extends React.PureComponent {
         }
     ];
 
-
     renderAfterPage: CommonPageComponent[] = [
         // TODO: add footer here
     ];
@@ -74,7 +73,7 @@ export default class AppRouter extends React.PureComponent {
                 <Switch>
                     {this.renderRoutes()}
                 </Switch>
-                {/*{this.renderSortedComponents(this.renderAfterPage)}*/}
+                {this.renderSortedComponents(this.renderAfterPage)}
             </Router>
         );
     }

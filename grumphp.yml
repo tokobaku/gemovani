@@ -1,0 +1,47 @@
+parameters:
+  git_dir: .
+  bin_dir: vendor/bin
+  tasks:
+    git_commit_message:
+      allow_empty_message: false
+      enforce_capitalized_subject: true
+      enforce_no_subject_punctuations: false
+      enforce_no_subject_trailing_period: true
+      enforce_single_lined_subject: true
+      type_scope_conventions: []
+      max_body_width: 150
+      max_subject_width: 150
+      case_insensitive: true
+      multiline: true
+      additional_modifiers: ''
+    git_blacklist:
+      keywords:
+        - "die;"
+        - "die("
+        - "var_dump("
+        - "exit;"
+        - "console.log("
+        - "print_r("
+    phpcs:
+      standard: PSR2
+      severity: ~
+      error_severity: ~
+      warning_severity: ~
+      tab_width: ~
+      report: full
+      report_width: ~
+      whitelist_patterns:
+        - /^app\/(.*)/
+      encoding: ~
+      ignore_patterns:
+        - "./tests/*"
+        - "./resources/*"
+        - "./database/*"
+        - "./bootstrap/*"
+      sniffs: []
+      triggered_by: [php]
+    npm_script:
+      script: eslint
+      triggered_by: [js]
+      working_directory: "."
+      is_run_task: true
