@@ -9,7 +9,8 @@
             {
                 "root": "./resources/app/",
                 "alias": {
-                    "Component": "./resources/app/component/"
+                    "Component": "./resources/app/component/",
+                    "Route": "./resources/app/route/"
                 }
             }
         ]

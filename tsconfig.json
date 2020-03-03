@@ -3,13 +3,14 @@
         "outDir": "./public/application",
         "sourceMap": true,
         "noImplicitAny": true,
-        "module": "es6",
+        "module": "CommonJS",
         "target": "es5",
         "jsx": "react",
         "strict": true,
         "baseUrl": "resources/app",
         "paths": {
-            "Component": ["component/*"]
+            "Component/*": ["component/*"],
+            "Route/*": ["route/*"]
         }
     }
 }

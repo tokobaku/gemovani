@@ -5,14 +5,18 @@
     },
     "private": true,
     "scripts": {
-        "dev": "npm run development",
-        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "watch": "npm run development -- --watch",
-        "watch-poll": "npm run watch -- --watch-poll",
-        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+        "build": "webpack --config webpack.production.js",
+        "dev": "webpack --config webpack.development.js",
+        "start": "webpack --config webpack.development.js --watch",
+        "stylelint": "stylelint 'resources/app/**/*.scss'",
+        "eslint": "eslint 'resources/app/**/*.{ts,tsx}'"
     },
+    "browserslist": [
+        "> 0.2%",
+        "not dead",
+        "not ie <= 11",
+        "not op_mini all"
+    ],
     "devDependencies": {
         "@babel/core": "^7.8.4",
         "@babel/plugin-proposal-class-properties": "^7.8.3",
@@ -23,10 +27,24 @@
         "@types/react": "^16.9.22",
         "@types/react-dom": "^16.9.5",
         "@types/react-redux": "^7.1.7",
+        "@types/react-router": "^5.1.4",
+        "@types/react-router-dom": "^5.1.3",
         "@types/redux": "^3.6.0",
+        "@typescript-eslint/eslint-plugin": "^2.21.0",
+        "@typescript-eslint/parser": "^2.21.0",
+        "babel-eslint": "^10.1.0",
         "babel-loader": "^8.0.6",
         "babel-plugin-module-resolver": "^4.0.0",
         "css-loader": "^3.4.2",
+        "eslint": "^6.8.0",
+        "eslint-config-airbnb": "^18.0.1",
+        "eslint-plugin-array-func": "^3.1.4",
+        "eslint-plugin-babel": "^5.3.0",
+        "eslint-plugin-fp": "^2.3.0",
+        "eslint-plugin-import": "^2.20.1",
+        "eslint-plugin-jest": "^23.8.0",
+        "eslint-plugin-jsx-a11y": "^6.2.3",
+        "eslint-plugin-react": "^7.18.3",
         "mini-css-extract-plugin": "^0.9.0",
         "node-sass": "^4.13.1",
         "sass-loader": "^8.0.2",
@@ -35,17 +53,18 @@
         "stylelint-config-standard": "^20.0.0",
         "stylelint-order": "^4.0.0",
         "stylelint-scss": "^3.14.2",
-        "tslint": "^6.0.0",
-        "tslint-react": "^4.2.0",
         "typescript": "^3.8.2",
         "webpack": "^4.41.6",
-        "webpack-cli": "^3.3.11"
+        "webpack-cli": "^3.3.11",
+        "webpack-merge": "^4.2.2"
     },
     "dependencies": {
         "babel-plugin-transform-rebem-jsx": "^0.3.3",
         "react": "^16.12.0",
         "react-dom": "^16.12.0",
         "react-redux": "^7.2.0",
+        "react-router": "^5.1.2",
+        "react-router-dom": "^5.1.2",
         "redux": "^4.0.5"
     }
 }
