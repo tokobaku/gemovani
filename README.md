@@ -9,7 +9,7 @@ Website is hosted under the domain of [gemovani-villa.ge](http://gemovani-villa.
 This project is built using [laravel](https://laravel.com/) + [react](https://reactjs.org/) stack
 
 ### Laravel
-Version currently used: 3.0.1
+Version currently used: 6.2
 
 ### React
 Version currently used: 16.12.0
