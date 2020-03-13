@@ -11,6 +11,14 @@
 |
 */
 
+Auth::routes();
+
+Route::group(['prefix' =>'admin', 'middleware' => 'auth'], function () {
+    Route::get('/', function () {
+        return view('admin.dashboard');
+    });
+});
+
 Route::get('{path}', function () {
     return view('welcome');
 })->where('path', '.*');
