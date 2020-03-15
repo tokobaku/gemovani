@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author Tornike Bakuradze <tokobakuradze@gmail.com>.
+ */
 
 use Illuminate\Database\Seeder;
 
@@ -11,6 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+         $this->call(UsersTableSeeder::class);
     }
 }
