@@ -1,0 +1,64 @@
+/**
+ * @author Tornike Bakuradze <tokobakuradze@gmail.com>
+ */
+
+.Form {
+    margin: 50px 1rem;
+    background: var(--secondary-base-color);
+    padding: 1rem;
+    border-radius: 10px;
+
+    @include after-mobile {
+        margin: 50px auto;
+        width: 70%;
+    }
+
+    @include desktop {
+        width: 50%;
+    }
+
+    &-Header {
+        margin-bottom: 20px;
+    }
+
+    &-FormGroup {
+        margin: 10px 0;
+
+        &_isFlex {
+            display: flex;
+            align-items: center;
+
+            * {
+                &:not(:first-child) {
+                    margin-left: 10px;
+                }
+            }
+
+            label {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    &-Label {
+        display: inline-block;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    &-Input {
+        width: 100%;
+
+        &[type="checkbox"] {
+            width: auto;
+        }
+    }
+
+    &-ErrorMessage {
+        color: var(--primary-error-color);
+    }
+
+    &-SuccessMessage {
+        color: var(--default-green-color);
+    }
+}

@@ -9,7 +9,9 @@
         "dev": "webpack --config webpack.development.js",
         "start": "webpack --config webpack.development.js --watch",
         "stylelint": "stylelint 'resources/app/**/*.scss'",
-        "eslint": "eslint 'resources/app/**/*.{ts,tsx}'"
+        "eslint": "eslint 'resources/app/**/*.{ts,tsx}'",
+        "admin": "webpack --config webpack.admin.js",
+        "start-admin": "webpack --config webpack.admin.js --watch"
     },
     "browserslist": [
         "> 0.2%",
