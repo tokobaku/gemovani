@@ -6,4 +6,4 @@
 
 SOURCE_DIR=$(git rev-parse --show-toplevel)
 
-(cd "$SOURCE_DIR" && npm run build)
+(cd "$SOURCE_DIR" && npm run build && npm run admin)

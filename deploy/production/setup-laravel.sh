@@ -8,4 +8,4 @@
 SOURCE_DIR=$(git rev-parse --show-toplevel)
 
 (cd "$SOURCE_DIR" && composer install)
-(cd "$SOURCE_DIR" && php artisan migrate)
+(cd "$SOURCE_DIR" && php artisan migrate --seed)
