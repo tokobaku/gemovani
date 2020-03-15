@@ -1,0 +1,37 @@
+/**
+ * @author Tornike Bakuradze <tokobakuradze@gmail.com>.
+ */
+
+:root {
+    --header-height: 40px;
+}
+
+.Header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    background-color: var(--secondary-base-color);
+
+    &-Content {
+        max-width: 1440px;
+        padding: 1rem;
+        margin: auto;
+        display: block;
+    }
+
+    &-Auth {
+        display: block;
+        margin-left: auto;
+        width: fit-content;
+    }
+}
+
+.Main {
+    margin-top: var(--header-height);
+
+    &-Content {
+        margin-left: var(--navigation-width);
+    }
+}

@@ -17,6 +17,10 @@ Route::group(['prefix' =>'admin', 'middleware' => 'auth'], function () {
     Route::get('/', function () {
         return view('admin.dashboard');
     });
+
+    Route::get('{path}', function () {
+        return view('admin.404');
+    })->where('path', '.*');
 });
 
 Route::get('{path}', function () {

@@ -1,0 +1,27 @@
+/**
+ * @author Tornike Bakuradze <tokobakuradze@gmail.com>.
+ */
+
+:root {
+    --navigation-width: 100px;
+}
+
+.Nav {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    height: 100%;
+    width: var(--navigation-width);
+    background: var(--primary-base-color);
+    color: $white;
+
+    &-MenuItem {
+        color: $white;
+        width: 100%;
+        padding: 15px;
+
+        a {
+            color: $white;
+        }
+    }
+}

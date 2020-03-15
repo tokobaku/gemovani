@@ -1,0 +1,15 @@
+/**
+ * @author Tornike Bakuradze <tokobakuradze@gmail.com>.
+ */
+
+a {
+    color: var(--primary-base-color);
+
+    &:visited {
+        color: var(--primary-base-color);
+    }
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
