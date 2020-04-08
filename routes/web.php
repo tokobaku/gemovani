@@ -18,10 +18,14 @@ Route::group(['prefix' =>'admin', 'middleware' => 'auth'], function () {
         return view('admin.dashboard');
     });
 
+    Route::get('/files', 'FilesController@index');
+
     Route::get('{path}', function () {
         return view('admin.404');
     })->where('path', '.*');
 });
+
+Route::get('/image/{path}', 'ImageController@show')->where('path', '.*');
 
 Route::get('{path}', function () {
     return view('welcome');

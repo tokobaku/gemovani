@@ -5,7 +5,10 @@
 /public/storage
 /public/application
 /public/backend
+/public
 /storage/*.key
+/storage/glide
+/storage/app/public
 /vendor
 .env
 .env.backup
