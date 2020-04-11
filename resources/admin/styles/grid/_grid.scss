@@ -1,0 +1,37 @@
+/**
+ * @author Tornike Bakuradze <tokobakuradze@gmail.com>
+ */
+
+:root {
+    --danger-color: red;
+    --action-button-text-color: white;
+}
+
+.Grid {
+    &-Title {
+        margin-bottom: 50px;
+    }
+
+    &-ActionsWrapper {
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+        align-items: baseline;
+
+        li {
+            margin: 0 10px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    &-Action {
+        color: var(--action-button-text-color);
+
+        &_danger {
+            background-color: var(--danger-color);
+        }
+    }
+}

@@ -1,0 +1,53 @@
+/**
+ * @author Tornike Bakuradze <tokobakuradze@gmail.com>
+ */
+
+@mixin expandable-line {
+    content: '';
+    background-color: var(--primary-base-color);
+    height: 1px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+}
+
+.Expandable {
+    &:before {
+        @include expandable-line;
+    }
+
+    &:before {
+        top: 0;
+    }
+
+    &:last-child {
+        &:after {
+            bottom: 0;
+            @include expandable-line;
+        }
+    }
+
+    &-Checkbox {
+        display: none;
+
+        ~ div {
+            display: none;
+        }
+
+        &:checked {
+            ~ div {
+                display: block;
+            }
+        }
+    }
+
+    &-Label {
+        font-weight: bold;
+        padding: 10px 0;
+        text-transform: uppercase;
+    }
+
+    &-Content {
+        padding-bottom: 10px;
+    }
+}

@@ -5,7 +5,7 @@
 /public/storage
 /public/application
 /public/backend
-/public
+/public/packages
 /storage/*.key
 /storage/glide
 /storage/app/public

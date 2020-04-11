@@ -7,6 +7,6 @@
 @extends('admin.layout.master')
 
 @section('content')
-    <h1>{{ __('404, Page not found!') }}</h1>
-    <a href="{{ url()->previous() }}">{{ __('Go back, where you came from') }}</a>
+    <h1>{{ __('admin.page-not-found') }}</h1>
+    <a href="{{ url()->previous() }}">{{ __('admin.go-back-where-you-came-from') }}</a>
 @endsection

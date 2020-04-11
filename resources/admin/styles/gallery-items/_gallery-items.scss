@@ -1,0 +1,40 @@
+/**
+ * @author Tornike Bakuradze <tokobakuradze@gmail.com>
+ */
+
+:root {
+    --gallery-items-button-size: 15px;
+    --gallery-items-reorder-icon: '↕';
+}
+
+.GalleryItems {
+    &-Item {
+        > div {
+            display: inline-block;
+        }
+
+        button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 1;
+        }
+    }
+
+    &-ItemDrag {
+        top: 50%;
+        left: 100%;
+        transform: translateY(-50%);
+        background-color: var(--gallery-items-drag-color);
+        position: absolute;
+
+        &:before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: translateY(-50%);
+            content: var(--gallery-items-reorder-icon);
+            font-size: 70px;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+/**
+ * @author Tornike Bakuradze <tokobakuradze@gmail.com>.
+ */
+
+:root {
+    --success-color: #4CAF50;
+    --error-color: red;
+}
+
+.Messages {
+    &-Item {
+        list-style: none;
+        padding: 20px;
+        border-radius: 2px;
+        color: white;
+
+        &_success {
+            background-color: var(--success-color);
+        }
+
+        &_error {
+            background-color: var(--error-color);
+        }
+    }
+}

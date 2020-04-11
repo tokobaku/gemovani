@@ -19,6 +19,8 @@ Route::group(['prefix' =>'admin', 'middleware' => 'auth'], function () {
     });
 
     Route::get('/files', 'FilesController@index');
+    Route::resource('galleries', 'GalleryController');
+    Route::post('/galleries/delete', 'GalleryController@massDelete');
 
     Route::get('{path}', function () {
         return view('admin.404');

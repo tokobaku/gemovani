@@ -3,7 +3,8 @@
  */
 
 :root {
-    --header-height: 40px;
+    --header-height: 60px;
+    --header-z-index: 10;
 }
 
 .Header {
@@ -13,6 +14,7 @@
     width: 100%;
     height: var(--header-height);
     background-color: var(--secondary-base-color);
+    z-index: var(--header-z-index);
 
     &-Content {
         max-width: 1440px;

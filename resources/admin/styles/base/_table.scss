@@ -1,0 +1,61 @@
+/**
+ * @author Tornike Bakuradze <tokobakuradze@gmail.com>
+ */
+
+:root {
+    --table-header-text-color: white;
+    --table-grid-color: var(--table-header-text-color);
+}
+
+table {
+    width: 100%;
+    margin: 20px 0;
+
+    thead {
+        padding: 0 10px;
+        font-size: 20px;
+        color: var(--table-header-text-color);
+        background-color: var(--primary-base-color);
+        text-align: left;
+
+        th {
+            border-top: none;
+        }
+    }
+
+    tr {
+        &:last-child {
+            td {
+                border-bottom: none;
+            }
+        }
+    }
+
+    th, td {
+        padding: 10px;
+        border: 2px solid var(--table-grid-color);
+
+        &:first-child {
+            border-left: none;
+        }
+
+        &:last-child {
+            border-right: none;
+        }
+
+        & > a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            color: inherit;
+
+            &:hover {
+                text-decoration: none;
+            }
+
+            &:visited {
+                color: inherit;
+            }
+        }
+    }
+}

@@ -14,7 +14,7 @@
     }
 
     @include desktop {
-        width: 50%;
+        width: 80%;
     }
 
     &-Header {
@@ -48,6 +48,10 @@
 
     &-Input {
         width: 100%;
+
+        &_youtube {
+            margin-bottom: 10px;
+        }
 
         &[type="checkbox"] {
             width: auto;

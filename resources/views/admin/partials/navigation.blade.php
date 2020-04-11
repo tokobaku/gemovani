@@ -7,7 +7,10 @@
 <nav class="Nav">
     <ul class="Nav-Menu">
         <li class="Nav-MenuItem">
-            <a href="{{ url('/admin/files') }}">{{ __('Files') }}</a>
+            <a href="{{ url('/admin/files') }}">{{ __('admin.giles') }}</a>
+        </li>
+        <li class="Nav-MenuItem">
+            <a href="{{ url('/admin/galleries') }}">{{ __('admin.galleries') }}</a>
         </li>
     </ul>
 </nav>
