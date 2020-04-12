@@ -12,5 +12,8 @@
         <li class="Nav-MenuItem">
             <a href="{{ url('/admin/galleries') }}">{{ __('admin.galleries') }}</a>
         </li>
+        <li class="Nav-MenuItem">
+            <a href="{{ url('/admin/faq') }}">{{ __('admin.faq') }}</a>
+        </li>
     </ul>
 </nav>

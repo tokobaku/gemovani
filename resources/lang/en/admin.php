@@ -22,5 +22,8 @@ return [
     'login' => 'Login',
     'logout' => 'Logout',
     'page-not-found' => 'Page Not Found',
-    'go-back-where-you-came-from' => 'Go back where you came from'
+    'go-back-where-you-came-from' => 'Go back where you came from',
+    'faq' => 'FAQ',
+    'edit-faq' => 'Edit FAQ',
+    'content' => 'Content'
 ];
