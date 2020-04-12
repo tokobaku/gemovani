@@ -7,6 +7,7 @@ return [
     'files' => 'Files',
     'galleries' => 'Galleries',
     'create-new-gallery' => 'Create New Gallery',
+    'id' => 'ID',
     'url-key' => 'Url Key',
     'title' => 'Title',
     'description' => 'Description',

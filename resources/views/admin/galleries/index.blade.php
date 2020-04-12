@@ -27,7 +27,7 @@
                 <tr>
                     <th><input class="Marker" id="mark-all" type="checkbox" name="mark_all"></th>
                     <th>{{ __('admin.id') }}</th>
-                    <th>{{ __('admin.url-key') }}th>
+                    <th>{{ __('admin.url-key') }}</th>
                     <th>{{ __('admin.title') }}</th>
                 </tr>
             </thead>
