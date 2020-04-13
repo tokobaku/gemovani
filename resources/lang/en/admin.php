@@ -32,5 +32,6 @@ return [
     'end-date' => 'End Date',
     'cover-image' => 'Cover Image',
     'add-new-tour' => 'Add New Tour',
-    'tours' => 'Tours'
+    'tours' => 'Tours',
+    'no-tours-found' => 'No Tours Found'
 ];
