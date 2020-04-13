@@ -9,8 +9,10 @@
 @section('content')
     <div class="Form">
         <h1>{{ __('admin.create-new-gallery') }}</h1>
-        <form action="{{ url('/admin/galleries') }}" method="POST" id="gallery-form">
+        <form action="{{ url("/admin/galleries/{$gallery->id}") }}" method="POST" id="gallery-form">
             @csrf
+            @method('PATCH')
+            <input type="hidden" name="id" value="{{ $gallery->id }}">
             <div class="Form-FormGroup">
                 @error('url_key')
                 <div class="Form-ErrorMessage">{{ $message }}</div>
@@ -35,14 +37,14 @@
                                        for="translations_{{ $language['code'] }}_title">{{ __('admin.title') }}</label>
                                 <input class="Form-Input" id="translations_{{ $language['code'] }}_title"
                                        name="translations[{{ $language['code'] }}][title]"
-                                       value="{{ old("translations.{$language['code']}.title") ?? $gallery->getTranslation($language['code'])->title }}">
+                                       value="{{ old("translations.{$language['code']}.title") ?? @$gallery->getTranslation($language['code'])->title }}">
                             </div>
                             <div class="Form-FormGroup">
                                 <label class="Form-Label" for="translations_{{ $language['code'] }}_description">
                                     {{ __('admin.description') }}
                                 </label>
                                 <textarea class="Form-Input ToTinyMCE" id="translations_{{ $language['code'] }}_description"
-                                          name="translations[{{ $language['code'] }}][description]">{{ old("translations.{$language['code']}.description") ?? $gallery->getTranslation($language['code'])->title }}</textarea>
+                                          name="translations[{{ $language['code'] }}][description]">{{ old("translations.{$language['code']}.description") ?? @$gallery->getTranslation($language['code'])->description }}</textarea>
                             </div>
                         </div>
                     </div>

@@ -25,6 +25,9 @@ Route::group(['prefix' =>'admin', 'middleware' => 'auth'], function () {
     Route::get('/faq', 'FaqController@index');
     Route::post('/faq', 'FaqController@store');
 
+    Route::resource('tours', 'TourController');
+    Route::post('/tours/delete', 'GalleryController@massDelete');
+
     Route::get('{path}', function () {
         return view('admin.404');
     })->where('path', '.*');

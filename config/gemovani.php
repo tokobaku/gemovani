@@ -14,5 +14,8 @@ return [
             'code' => 'ka',
             'label' => 'Georgian'
         ]
-    ]
+    ],
+
+    // Default language
+    'defaultLanguage' => 'en'
 ];

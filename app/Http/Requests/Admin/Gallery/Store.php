@@ -6,6 +6,7 @@
 namespace App\Http\Requests\Admin\Gallery;
 
 use App\Http\Requests\Helpers\JsonValidator;
+use App\Http\Requests\Helpers\SanitizeTranslationsArray;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Validator;
 
@@ -16,21 +17,16 @@ use Illuminate\Validation\Validator;
 class Store extends FormRequest
 {
     use JsonValidator;
+    use SanitizeTranslationsArray;
 
     /**
-     * Removes translations that has no title
+     * Removes translations from request that are not filled
      */
-    protected function prepareForValidation()
+    public function prepareForValidation()
     {
-        $translations = array_filter(
-            $this->request->get('translations'),
-            function ($translation) {
-                return isset($translation['title']) || isset($translation['description']);
-            }
-        );
-
+        $this->requiredFields = ['title', 'description'];
         $this->merge([
-            'translations' => $translations
+            'translations' => $this->getSanitizedTranslations()
         ]);
     }
 

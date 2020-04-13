@@ -25,5 +25,12 @@ return [
     'go-back-where-you-came-from' => 'Go back where you came from',
     'faq' => 'FAQ',
     'edit-faq' => 'Edit FAQ',
-    'content' => 'Content'
+    'content' => 'Content',
+    'create-new-tour' => 'Create New Tour',
+    'choose-image' => 'Choose Image',
+    'start-date' => 'Start Date',
+    'end-date' => 'End Date',
+    'cover-image' => 'Cover Image',
+    'add-new-tour' => 'Add New Tour',
+    'tours' => 'Tours'
 ];

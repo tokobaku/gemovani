@@ -6,6 +6,7 @@
 namespace App\Http\Requests\Admin\Gallery;
 
 use App\Gallery\Gallery;
+use App\Http\Requests\Helpers\SanitizeTranslationsArray;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -15,20 +16,16 @@ use Illuminate\Validation\Rule;
  */
 class Update extends FormRequest
 {
-    /**
-     * Removes translations that has no title
-     */
-    protected function prepareForValidation()
-    {
-        $translations = array_filter(
-            $this->request->get('translations'),
-            function ($translation) {
-                return isset($translation['title']);
-            }
-        );
+    use SanitizeTranslationsArray;
 
+    /**
+     * Removes translations from request that are not filled
+     */
+    public function prepareForValidation()
+    {
+        $this->requiredFields = ['title', 'description'];
         $this->merge([
-            'translations' => $translations
+            'translations' => $this->getSanitizedTranslations()
         ]);
     }
 
