@@ -61,8 +61,10 @@ class Update extends FormRequest
             'end_date' => "required|date|after:$minEndDateString",
             'translations.*.title' => 'required_with:translations.*.description|max:255',
             'translations.*.locale' => 'required',
+            'translations.*.description' => 'required_with:translations.*.title',
             'translations.en.title' => 'required|max:255',
             'translations.en.locale' => 'required',
+            'translations.en.description' => 'required'
         ];
     }
 

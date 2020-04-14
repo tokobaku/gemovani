@@ -43,7 +43,7 @@
                 @foreach(config('gemovani.languages') as $language)
                 <div class="Expandable">
                     <input class="Expandable-Checkbox" type="checkbox" id="translation_{{ $language['code'] }}"
-                           @error("translations.{$language['code']}.title") checked @enderror>
+                           @if($errors->has("translations.{$language['code']}.description") || $errors->has("translations.{$language['code']}.title")) checked @endif>
                     <label class="Expandable-Label" for="translation_{{ $language['code'] }}">{{ $language['code'] }}</label>
                     <div class="Expandable-Content">
                         <div class="Form-FormGroup">
@@ -59,6 +59,9 @@
                                    value="{{ old("translations.{$language['code']}.title") ?? @$tour->getTranslation($language['code'])->title }}">
                         </div>
                         <div class="Form-FormGroup">
+                            @error("translations.{$language['code']}.description")
+                            <div class="Form-ErrorMessage">{{ $message }}</div>
+                            @enderror
                             <label class="Form-Label" for="translations_{{ $language['code'] }}_description">
                                 {{ __('admin.description') }}
                             </label>
