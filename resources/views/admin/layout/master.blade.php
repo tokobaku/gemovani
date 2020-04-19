@@ -13,6 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('backend/main.css') }}">
     <link rel="stylesheet" href="{{ asset('tinymce/skins/lightgray/skin.min.css') }}">
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' />
     @yield('head')
     <title>@yield('documentTitle')</title>
 </head>
@@ -28,6 +29,7 @@
     </main>
     <script src="{{ asset('vendor/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ asset('vendor/sortable/sortable.js') }}"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
     <script src="{{ asset('backend/main.js') }}"></script>
     @yield('scripts')
 </body>

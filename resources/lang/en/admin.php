@@ -33,5 +33,8 @@ return [
     'cover-image' => 'Cover Image',
     'add-new-tour' => 'Add New Tour',
     'tours' => 'Tours',
-    'no-tours-found' => 'No Tours Found'
+    'no-tours-found' => 'No Tours Found',
+    'no-locations-found' => 'No Locations Found',
+    'locations' => 'Locations',
+    'create-new-location' => 'Create new location'
 ];

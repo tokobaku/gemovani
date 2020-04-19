@@ -12,3 +12,4 @@ import './components/messages';
 import './components/popup';
 import './components/select-image-popup';
 import './components/utils';
+import './components/map';

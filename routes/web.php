@@ -28,6 +28,9 @@ Route::group(['prefix' =>'admin', 'middleware' => 'auth'], function () {
     Route::resource('tours', 'TourController');
     Route::post('/tours/delete', 'TourController@massDelete');
 
+    Route::resource('locations', 'LocationController');
+    Route::post('/locations/delete', 'LocationController@massDelete');
+
     Route::get('{path}', function () {
         return view('admin.404');
     })->where('path', '.*');
