@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * Translation of Tour entity
  * @see Tour
  * @property Tour tour
+ * @property int tour_id
  */
 class TourTranslation extends Model
 {

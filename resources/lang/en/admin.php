@@ -36,5 +36,9 @@ return [
     'no-tours-found' => 'No Tours Found',
     'no-locations-found' => 'No Locations Found',
     'locations' => 'Locations',
-    'create-new-location' => 'Create new location'
+    'create-new-location' => 'Create new location',
+    'slides' => 'Slides',
+    'add-new-slide' => 'Add New Slide',
+    'no-slides-found' => 'No Slides found',
+    'create-new-slide' => 'Create New Slide'
 ];
