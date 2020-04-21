@@ -14,6 +14,7 @@ use Exception;
  * Model for slide entity
  * @property HasMany<SlideTranslation> translations
  * @property int id
+ * @property int sortOrder
  */
 class Slide extends Model
 {

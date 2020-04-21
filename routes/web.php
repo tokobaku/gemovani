@@ -31,6 +31,8 @@ Route::group(['prefix' =>'admin', 'middleware' => 'auth'], function () {
     Route::resource('locations', 'LocationController');
     Route::post('/locations/delete', 'LocationController@massDelete');
 
+    Route::get('/slides/reorder', 'SlideController@reorder');
+    Route::post('/slides/reorder', 'SlideController@saveOrder');
     Route::resource('slides', 'SlideController');
     Route::post('/slides/delete', 'SlideController@massDelete');
 

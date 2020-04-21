@@ -30,7 +30,7 @@ class SlideController extends Controller
     public function index()
     {
         return view('admin.slides.index', [
-            'slides' => Slide::all()
+            'slides' => Slide::all()->sortBy('sortOrder')
         ]);
     }
 
@@ -127,6 +127,42 @@ class SlideController extends Controller
                     count($entityIds),
                     count($entityIds) === 1 ? 'item' : 'items'
                 )
+            ]
+        ]);
+    }
+
+    /**
+     * @return Application|Factory|View
+     */
+    public function reorder()
+    {
+        return view('admin.slides.reorder', [
+            'slides' => Slide::all()->sortBy('sortOrder')
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return Application|RedirectResponse|Redirector
+     */
+    public function saveOrder(Request $request)
+    {
+        $sortedEntityIds = json_decode($request->get('sorted_entities'));
+
+        foreach ($sortedEntityIds as $sortOrder => $entityId) {
+            /** @var Slide $slide */
+            $slide = Slide::find($entityId);
+
+            if ($slide) {
+                $slide->sortOrder = $sortOrder;
+                $slide->save();
+            }
+        }
+
+        return redirect('/admin/slides')->with('messages', [
+            [
+                'message' => 'Saved sort orders of slides!',
+                'type' => 'success'
             ]
         ]);
     }

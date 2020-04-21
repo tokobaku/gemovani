@@ -21,5 +21,8 @@
         <li class="Nav-MenuItem">
             <a href="{{ url('/admin/locations') }}">{{ __('admin.locations') }}</a>
         </li>
+        <li class="Nav-MenuItem">
+            <a href="{{ url('/admin/slides') }}">{{ __('admin.slides') }}</a>
+        </li>
     </ul>
 </nav>

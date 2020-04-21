@@ -8,46 +8,37 @@
 
 @section('content')
     <div class="Grid">
-        <h1 class="Grid-Title">{{ __('admin.slides') }}</h1>
+        <h1 class="Grid-Title">{{ __('admin.reorder-slides') }}</h1>
         @if($slides->count())
             <div>
-                <form id="delete-form" method="POST" action="{{ url('/admin/slides/delete') }}">
+                <form id="reorder-form" method="POST" action="{{ url('/admin/slides/reorder') }}">
                     @csrf
-                    <input type="hidden" id="entities-field" name="entities">
+                    <input type="hidden" id="sorted-entities" name="sorted_entities">
                 </form>
                 <ul class="Grid-ActionsWrapper">
                     <li>
-                        <a href="{{ url('/admin/slides/reorder') }}">{{ __('admin.reorder') }}</a>
+                        <button class="Grid-Action"
+                                id="save-order">{{ __('admin.save-order') }}</button>
                     </li>
-                    <li><a href="{{ url('/admin/slides/create') }}">{{ __('admin.add-new-slide') }}</a></li>
-                    @if($slides->count())
-                        <li>
-                            <button class="Grid-Action Grid-Action_danger"
-                                    id="delete-all">{{ __('admin.delete') }}</button>
-                        </li>
-                    @endif
                 </ul>
             </div>
             <table>
                 <thead>
                 <tr>
-                    <th><input class="Marker" id="mark-all" type="checkbox" name="mark_all"></th>
                     <th>{{ __('admin.id') }}</th>
                     <th>{{ __('admin.title') }}</th>
                     <th>{{ __('admin.image') }}</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="slides-wrapper">
                 @foreach($slides as /** @var \App\slide\slide $slide */$slide)
                     <tr>
-                        <td><input class="Marker MarkEntity" type="checkbox" data-row-id="{{ $slide->id }}"></td>
                         <td>
-                            <a href="{{ url("/admin/slides/{$slide->id}/edit") }}">{{ $slide->id }}</a>
+                            <input type="hidden" class="IdField" value="{{ $slide->id }}">
+                            {{ $slide->id }}
                         </td>
                         <td>
-                            <a href="{{ url("/admin/slides/{$slide->id}/edit") }}">
-                                {!! @$slide->getTranslation('en')->content ?? null !!}
-                            </a>
+                            {!! @$slide->getTranslation('en')->content ?? null !!}
                         </td>
                         <td>
                             <img src="/image/{{ $slide->image }}?w=50" alt="slide image">
@@ -64,9 +55,21 @@
 @endsection
 
 @section('scripts')
-    <script>
-        window.addEventListener('load', function () {
-            createGrid();
+<script>
+    window.addEventListener('load', () => {
+        Sortable.create(document.querySelector('#slides-wrapper'))
+
+        document.querySelector('#save-order').addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const sortedEntities = document.querySelectorAll('.IdField');
+            const sortedEntityIds = [];
+            sortedEntities.forEach(({ value }) => { sortedEntityIds.push(value) });
+            document.querySelector('#sorted-entities').value = JSON.stringify(sortedEntityIds);
+
+            document.querySelector('#reorder-form').submit();
         });
-    </script>
+    });
+</script>
 @endsection
