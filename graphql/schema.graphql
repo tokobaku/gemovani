@@ -1,0 +1,52 @@
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-01-01 13:00:00`."
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+"A date string with format `Y-m-d`, e.g. `2011-05-23`."
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
+
+type Query {
+    slides(orderBy: [OrderByClause!] @orderBy): [Slide]! @all(model: "App\\Slide\\Slide")
+    locations: [Location] @all(model: "App\\Location\\Location")
+    location(id: ID @eq, url_key: String @eq): Location @find(model: "App\\Location\\Location")
+}
+
+input OrderByClause {
+    field: String!
+    order: SortOrder!
+}
+
+enum SortOrder {
+    ASC
+    DESC
+}
+
+type Slide {
+    id: ID!
+    sortOrder: Int!
+    locale: String!
+    image: String!
+    translations: [SlideTranslation] @hasMany
+}
+
+type SlideTranslation {
+    id: ID!
+    locale: String!
+    content: String
+    slide: Slide! @belongsTo
+}
+
+type Location {
+    id: ID!
+    longitude: Float!
+    latitude: Float!
+    url_key: String!
+    translations: [LocationTranslation]! @hasMany
+}
+
+type LocationTranslation {
+    id: ID!
+    locale: String!
+    title: String!
+    description: String!
+    location: Location! @belongsTo
+}
