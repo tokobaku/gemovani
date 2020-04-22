@@ -6,6 +6,7 @@
 namespace App\Http\Requests\Admin\Location;
 
 use App\Http\Requests\Helpers\SanitizeTranslationsArray;
+use App\Http\Requests\Helpers\UrlKeyGenerator;
 use App\Location\Location;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,7 +26,8 @@ class Store extends FormRequest
     {
         $this->requiredFields = ['title', 'description'];
         $this->merge([
-            'translations' => $this->getSanitizedTranslations()
+            'translations' => $this->getSanitizedTranslations(),
+            'url_key' => UrlKeyGenerator::toUrlKey($this->request->get('url_key'))
         ]);
     }
 
@@ -47,7 +49,7 @@ class Store extends FormRequest
     public function rules()
     {
         return [
-            'url_key' => 'required|string|min:3|max:255|unique:tours',
+            'url_key' => 'required|string|min:3|max:255|unique:locations',
             'cover_image' => 'required',
             'longitude' => 'required|numeric',
             'latitude' => 'required|numeric',
@@ -70,18 +72,18 @@ class Store extends FormRequest
             'url_key.string' => 'Invalid input for url key',
             'url_key.min' => 'Url key is too short it must be at least 3 characters long',
             'url_key.max' => 'Url key length exceeds 255 characters, please use shorter one',
-            'url_key.unique' => 'Tour with similar url key already exists. Please use different one',
+            'url_key.unique' => 'Location with similar url key already exists. Please use different one',
             'cover_image.required' => 'You must select an image for location',
             'longitude.required' => 'You must select location',
             'longitude.numeric' => 'You must select location',
             'latitude.required' => 'You must select location',
             'latitude.numeric' => 'You must select location',
-            'translations.*.title.required' => 'You must give tour a title',
-            'translations.*.title.required_with' => 'You must give tour a title',
-            'translations.*.title.string' => 'Invalid input for tour title',
-            'translations.*.title.max' => 'Tour title is too long. Please use shorter title for tour',
-            'translations.*.description.required' => 'You must give tour a description',
-            'translations.*.description.required_with' => 'You must give tour a description'
+            'translations.*.title.required' => 'You must give location a title',
+            'translations.*.title.required_with' => 'You must give location a title',
+            'translations.*.title.string' => 'Invalid input for location title',
+            'translations.*.title.max' => 'location title is too long. Please use shorter title for location',
+            'translations.*.description.required' => 'You must give location a description',
+            'translations.*.description.required_with' => 'You must give location a description'
         ];
     }
 }

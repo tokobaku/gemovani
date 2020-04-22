@@ -7,6 +7,7 @@ namespace App\Http\Requests\Admin\Tour;
 
 use App\Http\Requests\Helpers\DateTimeHelper;
 use App\Http\Requests\Helpers\SanitizeTranslationsArray;
+use App\Http\Requests\Helpers\UrlKeyGenerator;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
@@ -24,7 +25,8 @@ class Store extends FormRequest
     {
         $this->requiredFields = ['title', 'description'];
         $this->merge([
-            'translations' => $this->getSanitizedTranslations()
+            'translations' => $this->getSanitizedTranslations(),
+            'url_key' => UrlKeyGenerator::toUrlKey($this->request->get('url_key'))
         ]);
     }
 
