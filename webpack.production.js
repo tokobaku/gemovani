@@ -14,6 +14,6 @@ module.exports = merge(common, {
                 REBEM_MOD_DELIM: JSON.stringify('_'),
                 REBEM_ELEM_DELIM: JSON.stringify('-')
             }
-        }),
-    ],
+        })
+    ]
 });

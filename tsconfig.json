@@ -10,7 +10,13 @@
         "baseUrl": "resources/app",
         "paths": {
             "Component/*": ["component/*"],
-            "Route/*": ["route/*"]
+            "Route/*": ["route/*"],
+            "Route": ["route/index"],
+            "Query/*": ["query/*"],
+            "Store/*": ["store/*"],
+            "Store": ["store/index"],
+            "Helper/*": ["helper/*"],
+            "Style/*": ["style/*"]
         }
     }
 }

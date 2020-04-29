@@ -1,0 +1,28 @@
+/**
+ * @author Tornike Bakuradze <tokobakuradze@gmail.com>.
+ */
+
+input,
+textarea {
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    border: 1px solid var(--primary-base-color);
+
+    &[type="checkbox"] {
+        min-width: unset;
+        min-height: unset;
+    }
+
+    &:focus {
+        box-shadow: 0 0 5px var(--primary-base-color);
+        border: 1px solid var(--primary-base-color);
+    }
+}
+
+button {
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}

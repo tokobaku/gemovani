@@ -1,0 +1,34 @@
+/**
+ * @author Tornike Bakuradze <tokobakuradze@gmail.com>
+ */
+
+.Slider {
+    overflow-x: hidden;
+    width: 100%;
+    height: 100vh;
+
+    &-DraggableWrapper {
+        --offset-x: 0;
+        --transition-speed: .3s;
+        transition: transform linear var(--transition-speed);
+        display: flex;
+        transform: translate3d(var(--offset-x), 0, 0);
+    }
+
+    &-SlideWrapper {
+        flex-shrink: 0;
+        width: 100%;
+    }
+
+    &-SlideFigure {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    &-SlideImage {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}

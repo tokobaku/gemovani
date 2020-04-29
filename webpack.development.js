@@ -7,6 +7,13 @@ module.exports = merge(common, {
     mode: 'development',
     devtool: 'inline-source-map',
 
+    watchOptions: {
+        aggregateTimeout: 200,
+        poll: 1000
+    },
+
+    watch: true,
+
     plugins: [
         new MiniCssExtractPlugin(),
         new webpack.DefinePlugin({
@@ -15,6 +22,6 @@ module.exports = merge(common, {
                 REBEM_MOD_DELIM: JSON.stringify('_'),
                 REBEM_ELEM_DELIM: JSON.stringify('-')
             }
-        }),
-    ],
+        })
+    ]
 });

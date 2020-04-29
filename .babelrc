@@ -10,7 +10,11 @@
                 "root": "./resources/app/",
                 "alias": {
                     "Component": "./resources/app/component/",
-                    "Route": "./resources/app/route/"
+                    "Route": "./resources/app/route/",
+                    "Query": "./resources/app/query/",
+                    "Store": "./resources/app/store/",
+                    "Helper": "./resources/app/helper/",
+                    "Style": "./resources/app/style/"
                 }
             }
         ]

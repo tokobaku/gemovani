@@ -44,6 +44,7 @@ class Store extends FormRequest
     public function rules()
     {
         return [
+            'translations.en.content' => 'required',
             'translations.*.content' => 'required_with:translations.*.locale|string',
             'translations.*.locale' => 'required'
         ];
