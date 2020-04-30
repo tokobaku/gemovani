@@ -29,6 +29,7 @@
         "fp/no-loops": "error",
         "fp/no-delete": "error",
         "no-var": "error",
+        "no-new": "off",
         "css-rcurlyexpected": 0,
         "no-restricted-globals": ["error", "isFinite", "isNaN"],
         "max-len": [2, {

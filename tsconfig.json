@@ -16,6 +16,7 @@
             "Store/*": ["store/*"],
             "Store": ["store/index"],
             "Helper/*": ["helper/*"],
+            "Type/*": ["type/*"],
             "Style/*": ["style/*"]
         }
     }

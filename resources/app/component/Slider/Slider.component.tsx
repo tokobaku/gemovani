@@ -6,6 +6,7 @@ import * as React from 'react';
 import { Slide } from 'Store/Slides/Slides.action';
 import { getTranslation } from 'Helper/Translation';
 import CustomMath from 'Helper/Math';
+import Image from 'Component/Image';
 import 'Component/Slider/Slider.styles';
 
 export interface SliderProps {
@@ -17,6 +18,7 @@ export interface SliderProps {
     dragDiffThreshold: number;
     initialActiveSlide: number;
     transitionSpeed: number;
+    showCrumbs: boolean;
 }
 
 export interface SliderState {
@@ -27,6 +29,14 @@ export enum DragDirection {
     LEFT,
     RIGHT,
     NONE
+}
+
+export interface MouseEventCallback {
+    (event: React.MouseEvent): void;
+}
+
+export interface DragEventCallback {
+    (event: React.DragEvent): void;
 }
 
 /**
@@ -50,7 +60,8 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
     static defaultProps = {
         dragDiffThreshold: 50,
         initialActiveSlide: 0,
-        transitionSpeed: 300
+        transitionSpeed: 300,
+        showCrumbs: true
     };
 
     constructor(props: SliderProps) {
@@ -129,6 +140,12 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
         this.onSwipeEnd(event.changedTouches.item(0));
     }
 
+    getOnCrumbClick(slideIndex: number): MouseEventCallback {
+        return (): void => {
+            this.setActiveSlide(slideIndex);
+        };
+    }
+
     getDragDirection(): DragDirection {
         const { dragDiffThreshold } = this.props;
 
@@ -171,7 +188,7 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
     setRefTransitionSpeed(transitionSpeed: number, unit = 'ms'): void {
         if (this.draggableRef.current) {
             this.draggableRef.current.style.setProperty(
-                '--transition-speed',
+                '--slider-transition-speed',
                 `${transitionSpeed}${unit}`
             );
         }
@@ -199,14 +216,48 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
         return (
             <div key={index} block="Slider" elem="SlideWrapper">
                 <figure block="Slider" elem="SlideFigure">
-                    <img block="Slider" elem="SlideImage" src={`/image/${slide.image}?w=1000`} alt="slide" />
-                    <span
+                    <Image
+                        mix={{ block: 'Slider', elem: 'SlideImage' }}
+                        src={`${slide.image}`}
+                        initialImage={`/image/${slide.image}?w=20`}
+                        alt="slide"
+                        loading="lazy"
+                    />
+                    <div
                         block="Slider"
                         elem="SlideText"
                         // eslint-disable-next-line react/no-danger
                         dangerouslySetInnerHTML={{ __html: getTranslation(slide, 'en')?.content || '' }}
                     />
                 </figure>
+            </div>
+        );
+    }
+
+    renderCrumb(index: number): React.ReactNode {
+        const { activeSlideIndex } = this.state;
+        const isActive = index === activeSlideIndex;
+
+        return (
+            <li key={index} block="Slider" elem="Crumb" mods={{ isActive }}>
+                {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+                <button
+                    block="Slider"
+                    elem="CrumbButton"
+                    onClick={this.getOnCrumbClick(index)}
+                />
+            </li>
+        );
+    }
+
+    renderCrumbs(): React.ReactNode {
+        const { showCrumbs, slides } = this.props;
+
+        if (!showCrumbs) return null;
+
+        return (
+            <div block="Slider" elem="CrumbsWrapper">
+                {slides.map((slide, index) => this.renderCrumb(index))}
             </div>
         );
     }
@@ -230,6 +281,7 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
                 >
                     {slides.map((slide, index) => this.renderSlide(index, slide))}
                 </div>
+                {this.renderCrumbs()}
             </div>
         );
     }

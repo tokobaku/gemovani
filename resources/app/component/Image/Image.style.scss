@@ -1,0 +1,13 @@
+/**
+ * @author Tornike Bakuradze <tokobakuradze@gmail.com>
+ */
+
+:root {
+    --image-placeholder-blur: 40px;
+}
+
+.Image {
+    &_isBlurred {
+        filter: blur(var(--image-placeholder-blur));
+    }
+}
