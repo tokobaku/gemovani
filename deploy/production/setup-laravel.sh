@@ -7,5 +7,8 @@
 
 SOURCE_DIR=$(git rev-parse --show-toplevel)
 
+(cd "$SOURCE_DIR" && rm -rf vendor)
 (cd "$SOURCE_DIR" && composer install)
+(cp .env.example .env)
+(cd "$SOURCE_DIR" && php artisan key:generate)
 (cd "$SOURCE_DIR" && php artisan migrate --seed)

@@ -6,4 +6,6 @@
 
 SOURCE_DIR=$(git rev-parse --show-toplevel)
 
+(cd "$SOURCE_DIR" && rm -rf node_modules)
+(cd "$SOURCE_DIR" && npm i)
 (cd "$SOURCE_DIR" && npm run build && npm run admin)
