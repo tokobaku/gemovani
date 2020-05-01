@@ -4,6 +4,7 @@
 
 import * as React from 'react';
 import { Mix } from 'Type/BEM';
+import Asset from 'Helper/Asset';
 
 import 'Component/Image/Image.style.scss';
 
@@ -16,6 +17,7 @@ export interface ImageProps {
     initialImage?: string;
     mix: Mix;
     maxImageSize: number;
+    blurPlaceholderImage: boolean;
 }
 
 export interface ImageState {
@@ -33,7 +35,9 @@ export default class Image extends React.PureComponent<ImageProps, ImageState> {
         alt: '',
         manualDeffer: false,
         loading: 'lazy',
-        maxImageSize: MAX_IMAGE_SIZE
+        maxImageSize: MAX_IMAGE_SIZE,
+        mix: {},
+        blurPlaceholderImage: true
     };
 
     constructor(props: ImageProps) {
@@ -46,12 +50,16 @@ export default class Image extends React.PureComponent<ImageProps, ImageState> {
 
     componentDidMount(): void {
         this.observer = new IntersectionObserver(
-            () => {
-                this.onVisible();
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        this.onVisible();
+                    }
+                });
             },
             {
                 rootMargin: '0px',
-                threshold: 0.1
+                threshold: 0.2
             }
         );
 
@@ -82,7 +90,7 @@ export default class Image extends React.PureComponent<ImageProps, ImageState> {
         try {
             new URL(imageSrc);
         } catch (e) {
-            return `/image/${imageSrc}?w=${width}`;
+            return Asset.getImageUrl(imageSrc, { w: width });
         }
 
         return imageSrc;
@@ -102,11 +110,12 @@ export default class Image extends React.PureComponent<ImageProps, ImageState> {
             loading,
             mix,
             initialImage,
-            imgProps
+            imgProps,
+            blurPlaceholderImage
         } = this.props;
         const { imageSrc } = this.state;
 
-        const isBlurred = initialImage && !imageSrc;
+        const isBlurred = blurPlaceholderImage && initialImage && !imageSrc;
 
         return (
             <img

@@ -7,6 +7,7 @@ import {
 import { RouteComponentProps } from 'react-router';
 
 import Homepage from 'Route/Homepage';
+import ScrollToSection from 'Component/ScrollToSection';
 
 export type ComponentType = React.ComponentType<RouteComponentProps> | React.ComponentType | React.ReactNode;
 
@@ -50,6 +51,7 @@ export default class AppRouter extends React.PureComponent {
     render(): React.ComponentElement<{}, AppRouter> {
         return (
             <Router>
+                <ScrollToSection />
                 {this.renderSortedComponents(this.renderBeforePage)}
                 <Switch>
                     {this.renderRoutes()}

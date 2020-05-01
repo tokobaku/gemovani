@@ -6,6 +6,7 @@ import * as React from 'react';
 import { Slide } from 'Store/Slides/Slides.action';
 import { getTranslation } from 'Helper/Translation';
 import CustomMath from 'Helper/Math';
+import Asset from 'Helper/Asset';
 import Image from 'Component/Image';
 
 import 'Component/Slider/Slider.styles';
@@ -120,6 +121,7 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
     }
 
     onDragStart(event: React.DragEvent): void {
+        event.dataTransfer.setDragImage(document.createElement('div'), 0, 0);
         this.onSwipeStart(event);
     }
 
@@ -231,9 +233,10 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
                     <Image
                         mix={{ block: 'Slider', elem: 'SlideImage' }}
                         src={`${slide.image}`}
-                        initialImage={`/image/${slide.image}?w=20`}
+                        initialImage={Asset.getImageUrl(slide.image, { w: 20 })}
                         alt="slide"
                         loading="lazy"
+                        blurPlaceholderImage={false}
                     />
                     <div
                         block="Slider"
@@ -241,6 +244,7 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
                         // eslint-disable-next-line react/no-danger
                         dangerouslySetInnerHTML={{ __html: getTranslation(slide, 'en')?.content || '' }}
                     />
+                    <div block="Slider" elem="SlideCover" draggable />
                 </figure>
             </div>
         );
@@ -268,9 +272,9 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
         if (!showCrumbs) return null;
 
         return (
-            <div block="Slider" elem="CrumbsWrapper">
+            <ul block="Slider" elem="CrumbsWrapper">
                 {slides.map((slide, index) => this.renderCrumb(index))}
-            </div>
+            </ul>
         );
     }
 

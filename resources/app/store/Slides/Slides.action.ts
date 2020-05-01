@@ -3,7 +3,7 @@
  */
 
 export enum SlidesActionEnum {
-    UPDATE_SLIDES
+    UPDATE_SLIDES = 'UPDATE_SLIDES'
 }
 
 export interface SlideTranslation {
