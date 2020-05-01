@@ -1,6 +1,7 @@
 const path = require('path');
-const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const appRoot = path.resolve(__dirname, 'resources', 'app');
 
 module.exports = {
     resolve: {
@@ -36,7 +37,13 @@ module.exports = {
                 use: [
                     MiniCssExtractPlugin.loader,
                     'css-loader',
-                    'sass-loader'
+                    'sass-loader',
+                    {
+                        loader: 'sass-resources-loader',
+                        options: {
+                            resources: path.resolve(appRoot, 'style', 'abstract', '_abstract.scss')
+                        }
+                    }
                 ]
             },
             {

@@ -7,6 +7,7 @@ import { Slide } from 'Store/Slides/Slides.action';
 import { getTranslation } from 'Helper/Translation';
 import CustomMath from 'Helper/Math';
 import Image from 'Component/Image';
+
 import 'Component/Slider/Slider.styles';
 
 export interface SliderProps {
@@ -19,6 +20,7 @@ export interface SliderProps {
     initialActiveSlide: number;
     transitionSpeed: number;
     showCrumbs: boolean;
+    showArrows: boolean;
 }
 
 export interface SliderState {
@@ -61,7 +63,8 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
         dragDiffThreshold: 50,
         initialActiveSlide: 0,
         transitionSpeed: 300,
-        showCrumbs: true
+        showCrumbs: true,
+        showArrows: true
     };
 
     constructor(props: SliderProps) {
@@ -143,6 +146,15 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
     getOnCrumbClick(slideIndex: number): MouseEventCallback {
         return (): void => {
             this.setActiveSlide(slideIndex);
+        };
+    }
+
+    getOnArrowClick(type: 'left' | 'right'): MouseEventCallback {
+        return (): void => {
+            const { activeSlideIndex } = this.state;
+            const nextSlide = type === 'left' ? -1 : 1;
+
+            this.setActiveSlide(activeSlideIndex + nextSlide);
         };
     }
 
@@ -262,11 +274,22 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
         );
     }
 
+    renderArrow(type: 'left' | 'right'): React.ReactNode {
+        const { showArrows } = this.props;
+
+        return showArrows && (
+            <button block="Slider" elem="Arrow" mods={{ type }} onClick={this.getOnArrowClick(type)}>
+                {type === 'left' ? '<' : '>'}
+            </button>
+        );
+    }
+
     render(): React.ReactNode {
         const { slides } = this.props;
 
         return (
             <div block="Slider">
+                {this.renderArrow('left')}
                 <div
                     block="Slider"
                     elem="DraggableWrapper"
@@ -282,6 +305,7 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
                     {slides.map((slide, index) => this.renderSlide(index, slide))}
                 </div>
                 {this.renderCrumbs()}
+                {this.renderArrow('right')}
             </div>
         );
     }

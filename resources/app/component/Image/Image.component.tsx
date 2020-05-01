@@ -5,6 +5,8 @@
 import * as React from 'react';
 import { Mix } from 'Type/BEM';
 
+import 'Component/Image/Image.style.scss';
+
 export interface ImageProps {
     imgProps?: React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
     src: string;
@@ -44,14 +46,16 @@ export default class Image extends React.PureComponent<ImageProps, ImageState> {
 
     componentDidMount(): void {
         this.observer = new IntersectionObserver(
-            () => { this.onVisible(); },
+            () => {
+                this.onVisible();
+            },
             {
                 rootMargin: '0px',
                 threshold: 0.1
             }
         );
 
-        if (this.ref.current) {
+        if (this.ref.current && this.observer) {
             this.observer.observe(this.ref.current);
         }
     }
