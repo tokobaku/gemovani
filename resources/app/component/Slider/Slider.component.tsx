@@ -8,6 +8,7 @@ import { getTranslation } from 'Helper/Translation';
 import CustomMath from 'Helper/Math';
 import Asset from 'Helper/Asset';
 import Device from 'Helper/Device';
+import __ from 'Helper/__';
 import { debounce } from 'ts-debounce';
 import Image from 'Component/Image';
 
@@ -272,6 +273,7 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
                     block="Slider"
                     elem="CrumbButton"
                     onClick={this.getOnCrumbClick(index)}
+                    aria-label={__('Go to %s slide', index.toString())}
                 />
             </li>
         );
@@ -280,7 +282,7 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
     renderCrumbs(): React.ReactNode {
         const { showCrumbs, slides } = this.props;
 
-        if (!showCrumbs) return null;
+        if (!showCrumbs || !slides.length) return null;
 
         return (
             <ul block="Slider" elem="CrumbsWrapper">
@@ -290,9 +292,9 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
     }
 
     renderArrow(type: 'left' | 'right'): React.ReactNode {
-        const { showArrows } = this.props;
+        const { showArrows, slides } = this.props;
 
-        return showArrows && (
+        return showArrows && slides.length && (
             <button block="Slider" elem="Arrow" mods={{ type }} onClick={this.getOnArrowClick(type)}>
                 {type === 'left' ? '<' : '>'}
             </button>
