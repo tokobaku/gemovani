@@ -13,6 +13,8 @@ import Image from 'Component/Image';
 
 import 'Component/Slider/Slider.styles';
 
+const ONE_PERCENT = 0.01;
+
 export interface SliderProps {
     slides: Slide[];
 
@@ -82,8 +84,11 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
             activeSlideIndex: initialActiveSlide
         };
 
+        this.setVh(window.innerHeight);
+
         window.addEventListener('resize', debounce(() => {
             this.setVh(window.innerHeight);
+            this.forceUpdate();
         }));
     }
 
@@ -211,9 +216,7 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
     }
 
     setVh(vh: number): void {
-        if (this.draggableRef.current) {
-            this.draggableRef.current.style.setProperty('--vh', `${vh}px`);
-        }
+        document.body.style.setProperty('--vh', `${vh * ONE_PERCENT}px`);
     }
 
     getClampedOffsetX(newOffsetX: number): number {
