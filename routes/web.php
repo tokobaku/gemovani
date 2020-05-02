@@ -36,6 +36,9 @@ Route::group(['prefix' =>'admin', 'middleware' => 'auth'], function () {
     Route::resource('slides', 'SlideController');
     Route::post('/slides/delete', 'SlideController@massDelete');
 
+    Route::get('/config', 'ConfigController@index');
+    Route::post('/config', 'ConfigController@save');
+
     Route::get('{path}', function () {
         return view('admin.404');
     })->where('path', '.*');
@@ -45,4 +48,4 @@ Route::get('/image/{path}', 'ImageController@show')->where('path', '.*');
 
 Route::get('{path}', function () {
     return view('welcome');
-})->where('path', '.*');
+})->where('path', '^(?!/?api.*$).*');

@@ -9,6 +9,7 @@ type Query {
     locations: [Location] @all(model: "App\\Location\\Location")
     location(id: ID @eq, url_key: String @eq): Location @find(model: "App\\Location\\Location")
     tours: [Tour]! @all(model: "App\\Tour\\Tour")
+    config: Config!
 }
 
 input OrderByClause {
@@ -67,4 +68,9 @@ type TourTranslation {
     title: String!
     description: String!
     tour: Tour! @belongsTo
+}
+
+type Config {
+    title: String!
+    gemovani_logo: String!
 }

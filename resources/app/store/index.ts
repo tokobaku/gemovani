@@ -6,15 +6,19 @@ import { createStore, combineReducers } from 'redux';
 import { DefaultRootState } from 'react-redux';
 import SlidesReducer, { SlidesReducerInterface } from 'Store/Slides/Slides.reducer';
 import ToursReducer, { ToursReducerInterface } from 'Store/Tours/Tours.reducer';
+import ConfigReducer from 'Store/Config/Config.reducer';
+import { Config } from 'Store/Config/Config.action';
 
 export interface ReduxState extends DefaultRootState {
     SlidesReducer: SlidesReducerInterface;
     ToursReducer: ToursReducerInterface;
+    ConfigReducer: Config;
 }
 
 const reducers = {
     SlidesReducer,
-    ToursReducer
+    ToursReducer,
+    ConfigReducer
 };
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore

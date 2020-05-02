@@ -8,6 +8,7 @@ import { RouteComponentProps } from 'react-router';
 
 import Homepage from 'Route/Homepage';
 import ScrollToSection from 'Component/ScrollToSection';
+import Header from 'Component/Header';
 
 export type ComponentType = React.ComponentType<RouteComponentProps> | React.ComponentType | React.ReactNode;
 
@@ -18,7 +19,12 @@ export interface CommonPageComponent {
 }
 
 export default class AppRouter extends React.PureComponent {
-    renderBeforePage: CommonPageComponent[] = [];
+    renderBeforePage: CommonPageComponent[] = [
+        {
+            component: <Header />,
+            sortOrder: 0
+        }
+    ];
 
     renderAfterPage: CommonPageComponent[] = [
         // TODO: add footer here
