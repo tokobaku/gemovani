@@ -7,6 +7,7 @@ import { Slide } from 'Store/Slides/Slides.action';
 import { getTranslation } from 'Helper/Translation';
 import CustomMath from 'Helper/Math';
 import Asset from 'Helper/Asset';
+import Device from 'Helper/Device';
 import Image from 'Component/Image';
 
 import 'Component/Slider/Slider.styles';
@@ -290,9 +291,10 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
 
     render(): React.ReactNode {
         const { slides } = this.props;
+        const isAndroid = Device.isAndroid();
 
         return (
-            <div block="Slider">
+            <div block="Slider" mods={{ isAndroid }}>
                 {this.renderArrow('left')}
                 <div
                     block="Slider"

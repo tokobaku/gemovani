@@ -8,17 +8,27 @@
     --slider-crumb-selected-size: 1.5;
     --slider-transition-speed: .3s;
     --slider-crumb-size: 15px;
-    --slider-text-default-font-size: 60px;
+    --slider-text-default-font-size: 30px;
     --slider-arrow-background-color: #ffffff99;
     --slider-arrow-size: 100px;
     --slider-arrow-font-size: 60px;
     --slider-image-brightness: .7;
+
+    @include after-mobile {
+        --slider-text-default-font-size: 60px;
+    }
 }
 
 .Slider {
     overflow-x: hidden;
     width: 100%;
     height: 100vh;
+
+    &_isAndroid {
+        @supports (-webkit-appearance:none) {
+            height: calc(100vh - var(--browser-navbar-height));
+        }
+    }
 
     &-DraggableWrapper {
         --offset-x: 0;
@@ -62,9 +72,15 @@
         top: 30%;
         left: 50%;
         transform: translate(-50%, -50%);
-        max-width: 70%;
+        max-width: 90%;
+        width: 90%;
         color: white;
         text-align: center;
+
+        @include after-mobile {
+            max-width: 70%;
+            width: 70%;
+        }
 
         * {
             font-weight: bold;
