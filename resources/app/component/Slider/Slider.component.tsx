@@ -8,6 +8,7 @@ import { getTranslation } from 'Helper/Translation';
 import CustomMath from 'Helper/Math';
 import Asset from 'Helper/Asset';
 import Device from 'Helper/Device';
+import { debounce } from 'ts-debounce';
 import Image from 'Component/Image';
 
 import 'Component/Slider/Slider.styles';
@@ -37,10 +38,6 @@ export enum DragDirection {
 
 export interface MouseEventCallback {
     (event: React.MouseEvent): void;
-}
-
-export interface DragEventCallback {
-    (event: React.DragEvent): void;
 }
 
 /**
@@ -84,6 +81,10 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
         this.state = {
             activeSlideIndex: initialActiveSlide
         };
+
+        window.addEventListener('resize', debounce(() => {
+            this.setVh(window.innerHeight);
+        }));
     }
 
     componentDidUpdate(): void {
@@ -206,6 +207,12 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
                 '--slider-transition-speed',
                 `${transitionSpeed}${unit}`
             );
+        }
+    }
+
+    setVh(vh: number): void {
+        if (this.draggableRef.current) {
+            this.draggableRef.current.style.setProperty('--vh', `${vh}px`);
         }
     }
 
