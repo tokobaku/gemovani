@@ -19,10 +19,13 @@
             <a href="{{ url('/admin/tours') }}">{{ __('admin.tours') }}</a>
         </li>
         <li class="Nav-MenuItem">
-            <a href="{{ url('/admin/locations') }}">{{ __('admin.locations') }}</a>
+            <a href="{{ url('/admin/locations') }}">{{ __('admin.villages') }}</a>
         </li>
         <li class="Nav-MenuItem">
             <a href="{{ url('/admin/slides') }}">{{ __('admin.slides') }}</a>
+        </li>
+        <li class="Nav-MenuItem">
+            <a href="{{ url('/admin/config') }}">{{ __('admin.config') }}</a>
         </li>
     </ul>
 </nav>

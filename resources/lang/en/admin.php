@@ -40,5 +40,8 @@ return [
     'slides' => 'Slides',
     'add-new-slide' => 'Add New Slide',
     'no-slides-found' => 'No Slides found',
-    'create-new-slide' => 'Create New Slide'
+    'create-new-slide' => 'Create New Slide',
+    'villages' => 'Villages',
+    'config' => 'Config',
+    'reorder' => 'Reorder'
 ];
