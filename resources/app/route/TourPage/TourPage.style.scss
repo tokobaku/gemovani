@@ -1,0 +1,64 @@
+/**
+ * @author Tornike Bakuradze <tokobakuradze@gmail.com>
+ */
+
+.TourPage {
+    background-color: black;
+
+    &-Placeholder {
+        @include animate-background;
+        width: 100%;
+        margin: 20px 0;
+
+        &_type {
+            &_image {
+                margin-top: 0;
+                height: 500px;
+            }
+
+            &_title {
+                margin-left: 10px;
+                height: 30px;
+                width: 100px
+            }
+
+            &_content {
+                width: calc(100% - 40px);
+                margin: 10px;
+                height: 15px;
+            }
+        }
+    }
+
+    &-CoverImage {
+        object-fit: cover;
+        z-index: 1;
+        width: 100%;
+        height: 50vh;
+        position: sticky;
+        top: -200px;
+    }
+
+    &-Title {
+        font-size: 40px;
+        margin-bottom: 30px;
+        z-index: 1;
+        position: sticky;
+        top: 205px;
+        backdrop-filter: blur(10px);
+        background-color: rgba(0, 0, 0, .5);
+        color: white;
+        padding: 20px 10px;
+    }
+
+    &-Content {
+        padding: 10px;
+        letter-spacing: 1px;
+        word-break: break-word;
+        color: white;
+
+        p {
+            font-size: 16px;
+        }
+    }
+}
