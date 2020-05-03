@@ -11,7 +11,7 @@
     }
 }
 
-@mixin animate-background($background-color: #336, $line-color: #778, $animation-duration: 1s) {
+@mixin animate-background($background-color: black, $line-color: #444, $animation-duration: 1s) {
     animation-duration: $animation-duration;
     animation-fill-mode: forwards;
     animation-iteration-count: infinite;
