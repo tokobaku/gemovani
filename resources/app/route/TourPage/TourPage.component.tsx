@@ -74,9 +74,11 @@ export default class TourPage extends React.PureComponent<TourPageProps, TourPag
                         initialImage={Asset.getImageUrl(tour.cover_image, { w: 64 })}
                         src={tour.cover_image}
                     />
-                    <h1 block="TourPage" elem="Title" mods={{ isSticky }}>
-                        {getTranslation(tour, 'en')?.title}
-                    </h1>
+                    <div block="TourPage" elem="TitleWrapper">
+                        <h1 block="TourPage" elem="Title" mods={{ isSticky }}>
+                            {getTranslation(tour, 'en')?.title}
+                        </h1>
+                    </div>
                     <div
                         block="TourPage"
                         elem="Content"

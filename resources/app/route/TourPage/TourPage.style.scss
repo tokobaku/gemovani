@@ -39,16 +39,20 @@
         top: -200px;
     }
 
-    &-Title {
-        font-size: 40px;
-        margin-bottom: 30px;
+    &-TitleWrapper {
         z-index: 1;
         position: sticky;
         top: 205px;
         backdrop-filter: blur(10px);
         background-color: rgba(0, 0, 0, .5);
         color: white;
+    }
+
+    &-Title {
+        max-width: 1440px;
+        margin: auto auto 30px;
         padding: 20px 10px;
+        font-size: 40px;
     }
 
     &-Content {
@@ -56,6 +60,8 @@
         letter-spacing: 1px;
         word-break: break-word;
         color: white;
+        max-width: 1440px;
+        margin: auto;
 
         p {
             font-size: 16px;
