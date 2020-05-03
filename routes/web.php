@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author Tornike Bakuradze <tokobakuradze@gmail.com>
+ */
 
 /*
 |--------------------------------------------------------------------------
@@ -10,6 +13,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 

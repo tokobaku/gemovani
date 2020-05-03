@@ -3,19 +3,18 @@
  */
 
 import * as React from 'react';
-import { Mix } from 'Type/BEM';
+import { BEMEntity } from 'rebem-classname';
 import Asset from 'Helper/Asset';
 
 import 'Component/Image/Image.style.scss';
 
-export interface ImageProps {
+export interface ImageProps extends BEMEntity {
     imgProps?: React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
     src: string;
     alt: string;
     loading: 'lazy' | 'eager' | undefined;
     manualDeffer: boolean;
     initialImage?: string;
-    mix: Mix;
     maxImageSize: number;
     blurPlaceholderImage: boolean;
 }
@@ -115,7 +114,7 @@ export default class Image extends React.PureComponent<ImageProps, ImageState> {
         } = this.props;
         const { imageSrc } = this.state;
 
-        const isBlurred = blurPlaceholderImage && initialImage && !imageSrc;
+        const isBlurred = Boolean(blurPlaceholderImage && initialImage && !imageSrc);
 
         return (
             <img

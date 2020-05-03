@@ -11,7 +11,7 @@ const __ = (format: string, ...replace: string[]): string => {
         if (process.env.NODE_ENV === 'development') {
             if (!translations || !translations[format]) {
                 // eslint-disable-next-line no-console
-                console.warn(`Warning %s No translation found for ${format.toString()}`);
+                console.warn(`Warning %s No translation found for '${format.toString()}'`);
             }
         }
 

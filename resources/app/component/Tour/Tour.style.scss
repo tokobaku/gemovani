@@ -11,7 +11,7 @@
 .Tour {
     background-color: var(--tour-background-color);
     padding: 20px;
-    height: 100vh;
+    height: calc(calc(var(--vh, 1vh) * 100) - var(--header-height));
 
     &-ImageWrapper {
         overflow: hidden;

@@ -6,9 +6,7 @@ import * as React from 'react';
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
 import { BEMEntity, stringify } from 'rebem-classname';
 
-export interface LinkProps extends BEMEntity, RouterLinkProps {
-    scrollBehaviour: ScrollBehavior;
-}
+export interface LinkProps extends BEMEntity, RouterLinkProps {}
 
 export default class Link extends React.PureComponent<LinkProps> {
     static defaultProps = {
@@ -18,14 +16,14 @@ export default class Link extends React.PureComponent<LinkProps> {
     scrollToElem(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void {
         event.preventDefault();
 
-        const { to, onClick, scrollBehaviour } = this.props;
+        const { to, onClick } = this.props;
         const scrollTo = document.querySelector(to.toString());
 
         if (scrollTo) {
             window.scrollTo({
                 top: scrollTo.getBoundingClientRect().top,
                 left: scrollTo.getBoundingClientRect().left,
-                behavior: scrollBehaviour
+                behavior: 'smooth'
             });
         }
 
@@ -51,7 +49,7 @@ export default class Link extends React.PureComponent<LinkProps> {
             );
         }
 
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        return <RouterLink {...this.props} />;
+        // eslint-disable-next-line react/jsx-props-no-spreading,react/forbid-component-props
+        return <RouterLink className={stringify(this.props)} {...this.props} />;
     }
 }

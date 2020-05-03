@@ -2,14 +2,40 @@
  * @author Tornike Bakuradze <tokobakuradze@gmail.com>
  */
 
+:root {
+    --header-padding: 10px;
+    --header-content-height: 30px;
+    --header-height: calc(var(--header-padding) * 2 + var(--header-content-height));
+
+    @include after-mobile {
+        --header-padding: 20px;
+        --header-content-height: 50px;
+    }
+}
+
 .Header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    height: var(--header-height);
     z-index: 2;
     display: flex;
     justify-content: space-between;
+    padding: var(--header-padding);
+    backdrop-filter: blur(0);
+    background-color: transparent;
+    will-change: backdrop-filter, background-color;
+    transition: backdrop-filter, background-color linear .3s;
+
+    &_scrolledDown {
+        backdrop-filter: blur(10px);
+        background-color: #000000aa;
+    }
+
+    &-GemovaniLogo {
+
+    }
 
     &-Title {
         position: absolute;
@@ -17,5 +43,21 @@
         top: 50%;
         transform: translate(-50%, -50%);
         color: white;
+
+        @include mobile {
+            font-size: 18px;
+        }
+    }
+
+    &-TitleLink {
+        color: white;
+        cursor: pointer;
+
+        &:hover,
+        &:visited,
+        &:focus {
+            color: white;
+            text-decoration: none;
+        }
     }
 }
