@@ -52,13 +52,13 @@ html {
 
 body {
     font-family: $font-helvetica;
-    color: $black;
+    color: var(--primary-base-color);
     scroll-behavior: smooth;
     background-color: var(--secondary-light-color);
 }
 
 a {
-    color: $black;
+    color: var(--primary-base-color);
     text-decoration: inherit;
 
     &:hover {

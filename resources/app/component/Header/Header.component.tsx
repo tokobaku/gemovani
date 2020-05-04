@@ -3,10 +3,10 @@
  */
 
 import * as React from 'react';
-import { debounce } from 'ts-debounce';
 import __ from 'Helper/__';
 import Asset from 'Helper/Asset';
 import Link from 'Component/Link';
+import Menu from 'Component/Menu';
 
 import 'Component/Header/Header.style';
 
@@ -38,9 +38,9 @@ export default class Header extends React.PureComponent<HeaderProps, HeaderState
     componentDidMount(): void {
         const { scrollOffsetToBlur } = this.props;
 
-        window.addEventListener('scroll', debounce(() => {
+        window.addEventListener('scroll', () => {
             this.setState({ scrolledDown: window.scrollY > scrollOffsetToBlur });
-        }));
+        });
     }
 
     onTitleClick(event: React.MouseEvent): void {
@@ -80,7 +80,7 @@ export default class Header extends React.PureComponent<HeaderProps, HeaderState
     }
 
     renderMenu(): React.ReactNode {
-        return <div />;
+        return <Menu />;
     }
 
     render(): React.ReactNode {
