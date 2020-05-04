@@ -105,6 +105,7 @@ class GalleryController extends Controller
     {
         $validated = $request->validated();
         $gallery->url_key = $validated['url_key'];
+        $gallery->items = $validated['items'];
         $gallery->save();
 
         $gallery->saveTranslations($validated['translations']);

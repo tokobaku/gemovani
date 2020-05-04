@@ -1,0 +1,63 @@
+/**
+ * @author Tornike Bakuradze <tokobakuradze@gmail.com>
+ */
+
+.GalleriesPage {
+    background-color: black;
+    padding-top: var(--header-height);
+
+    &-PageTitle {
+        margin: 30px auto;
+        max-width: 1440px;
+        padding: 0 1rem;
+    }
+
+    &-Wrapper {
+        max-width: 1440px;
+        margin: auto;
+        padding: 0 1rem;
+
+        @include after-mobile {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @include desktop {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+
+    &-Placeholder {
+        @include animate-background;
+
+        &_type {
+            &_image {
+                width: 100%;
+                height: 300px;
+            }
+
+            &_title {
+                width: 100px;
+                height: 40px;
+                margin-top: 20px;
+            }
+        }
+    }
+
+    &-Gallery {
+        overflow: hidden;
+    }
+
+    &-GalleryLink {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    &-GalleryImage {
+        object-fit: cover;
+        width: 100%;
+        height: 300px;
+    }
+}

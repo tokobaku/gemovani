@@ -8,17 +8,20 @@ import SlidesReducer, { SlidesReducerInterface } from 'Store/Slides/Slides.reduc
 import ToursReducer, { ToursReducerInterface } from 'Store/Tours/Tours.reducer';
 import ConfigReducer from 'Store/Config/Config.reducer';
 import { Config } from 'Store/Config/Config.action';
+import GalleriesReducer, { GalleriesReducerInterface } from 'Store/Galleries/Galleries.reducer';
 
 export interface ReduxState extends DefaultRootState {
     SlidesReducer: SlidesReducerInterface;
     ToursReducer: ToursReducerInterface;
     ConfigReducer: Config;
+    GalleriesReducer: GalleriesReducerInterface;
 }
 
 const reducers = {
     SlidesReducer,
     ToursReducer,
-    ConfigReducer
+    ConfigReducer,
+    GalleriesReducer
 };
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore

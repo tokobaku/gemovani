@@ -10,6 +10,7 @@ import Homepage from 'Route/Homepage';
 import ScrollToSection from 'Component/ScrollToSection';
 import Header from 'Component/Header';
 import TourPage from 'Route/TourPage';
+import GalleriesPage from 'Route/GalleriesPage';
 
 export type ComponentType = React.ComponentType<RouteComponentProps> | React.ComponentType | React.ReactNode;
 
@@ -49,6 +50,7 @@ export default class AppRouter extends React.PureComponent {
                     <h1>About!</h1>
                 </Route>
                 <Route path="/tour/:urlKey" component={TourPage} />
+                <Route path="/galleries" component={GalleriesPage} />
             </>
         );
     }

@@ -55,6 +55,7 @@ class Update extends FormRequest
                 'max:255',
                 Rule::unique('galleries', 'url_key')->ignore($gallery->id)
             ],
+            'items' => 'required',
             'translations.*.title' => 'required|string|max:255',
             'translations.*.locale' => 'required'
         ];
