@@ -11,6 +11,7 @@ type Query {
     tours: [Tour]! @all(model: "App\\Tour\\Tour")
     config: Config!
     galleries: [Gallery]! @all(model: "App\\Gallery\\Gallery")
+    faqs: [Faq]! @all
 }
 
 input OrderByClause {
@@ -86,4 +87,9 @@ type GalleryTranslation {
     locale: String!
     title: String!
     description: String
+}
+
+type Faq {
+    locale: String!
+    content: String!
 }

@@ -1,0 +1,20 @@
+/**
+ * @author Tornike Bakuradze <tokobakuradze@gmail.com>
+ */
+
+.FaqPage {
+    padding-top: var(--header-height);
+    background-color: black;
+
+    &-Content {
+        max-width: 1440px;
+        padding: 1rem;
+        margin: auto;
+    }
+
+    &-Placeholder {
+        @include animate-background;
+        height: 20px;
+        margin: 1rem;
+    }
+}
