@@ -51,11 +51,21 @@ export default class Menu extends React.PureComponent<{}, MenuState> {
         return (
             <div block="Menu" elem="OverlayWrapper" mods={{ menuOpened }}>
                 <ul>
-                    <li><Link to="/about-us" onClick={this.onLinkClick}>{__('About Us')}</Link></li>
-                    <li><Link to="/villages" onClick={this.onLinkClick}>{__('Villages')}</Link></li>
-                    <li><Link to="/galleries" onClick={this.onLinkClick}>{__('Gallery')}</Link></li>
-                    <li><Link to="/contact" onClick={this.onLinkClick}>{__('Contact')}</Link></li>
-                    <li><Link to="/faq" onClick={this.onLinkClick}>{__('FAQ')}</Link></li>
+                    <li>
+                        <Link block="Menu" elem="Item" to="/about-us" onClick={this.onLinkClick}>{__('About Us')}</Link>
+                    </li>
+                    <li>
+                        <Link block="Menu" elem="Item" to="/villages" onClick={this.onLinkClick}>{__('Villages')}</Link>
+                    </li>
+                    <li>
+                        <Link block="Menu" elem="Item" to="/galleries" onClick={this.onLinkClick}>{__('Gallery')}</Link>
+                    </li>
+                    <li>
+                        <Link block="Menu" elem="Item" to="/contact" onClick={this.onLinkClick}>{__('Contact')}</Link>
+                    </li>
+                    <li>
+                        <Link block="Menu" elem="Item" to="/faq" onClick={this.onLinkClick}>{__('FAQ')}</Link>
+                    </li>
                 </ul>
             </div>
         );
