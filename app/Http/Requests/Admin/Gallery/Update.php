@@ -57,6 +57,7 @@ class Update extends FormRequest
             ],
             'items' => 'required',
             'translations.*.title' => 'required|string|max:255',
+            'translations.*.description' => '',
             'translations.*.locale' => 'required'
         ];
     }

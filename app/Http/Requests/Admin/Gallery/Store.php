@@ -49,6 +49,7 @@ class Store extends FormRequest
             'url_key' => 'required|string|min:3|max:255|unique:galleries',
             'translations.*.title' => 'required_with:translations.*.description|string|max:255',
             'translations.*.locale' => 'required',
+            'translations.*.description' => '',
             'translations.en.title' => 'required|string|max:255',
             'translations.en.locale' => 'required',
             'items' => 'required'

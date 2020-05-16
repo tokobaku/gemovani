@@ -79,11 +79,11 @@ export default class Image extends React.PureComponent<ImageProps, ImageState> {
 
     getSource(): string|undefined {
         const { imageSrc } = this.state;
-        const { initialImage, maxImageSize } = this.props;
+        const { initialImage, maxImageSize, src } = this.props;
         const width = this.getImageWidth() === 0 ? maxImageSize : Math.min(this.getImageWidth(), maxImageSize);
 
         if (!imageSrc) {
-            return initialImage;
+            return initialImage || src;
         }
 
         try {

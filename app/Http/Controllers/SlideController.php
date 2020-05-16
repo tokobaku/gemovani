@@ -98,7 +98,7 @@ class SlideController extends Controller
 
         $slide->fill([
             'image' => $validated['image']
-        ]);
+        ])->save();
 
         $slide->saveTranslations($validated['translations']);
 

@@ -11,6 +11,7 @@ import ScrollToSection from 'Component/ScrollToSection';
 import Header from 'Component/Header';
 import TourPage from 'Route/TourPage';
 import GalleriesPage from 'Route/GalleriesPage';
+import GalleryPage from 'Route/GalleryPage';
 
 export type ComponentType = React.ComponentType<RouteComponentProps> | React.ComponentType | React.ReactNode;
 
@@ -50,6 +51,7 @@ export default class AppRouter extends React.PureComponent {
                     <h1>About!</h1>
                 </Route>
                 <Route path="/tour/:urlKey" component={TourPage} />
+                <Route path="/gallery/:urlKey" component={GalleryPage} />
                 <Route path="/galleries" component={GalleriesPage} />
             </>
         );
