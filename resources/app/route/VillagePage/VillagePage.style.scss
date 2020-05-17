@@ -1,0 +1,78 @@
+/**
+ * @author Tornike Bakuradze <tokobakuradze@gmail.com>
+ */
+
+.VillagePage {
+    background-color: black;
+
+    &-Placeholder {
+        @include animate-background;
+        width: 100%;
+        margin: 20px 0;
+
+        &_type {
+            &_image {
+                margin-top: 0;
+                height: 500px;
+            }
+
+            &_title {
+                margin-left: 10px;
+                height: 30px;
+                width: 100px
+            }
+
+            &_content {
+                width: calc(100% - 40px);
+                margin: 10px;
+                height: 15px;
+            }
+        }
+    }
+
+    &-CoverImage {
+        object-fit: cover;
+        z-index: 1;
+        width: 100%;
+        height: 50vh;
+        position: sticky;
+        top: -30vh;
+    }
+
+    &-TitleWrapper {
+        z-index: 1;
+        position: sticky;
+        top: calc(20vh - 74px);
+        backdrop-filter: blur(10px);
+        background-color: rgba(0, 0, 0, .5);
+        color: white;
+
+        @include after-mobile {
+            top: calc(20vh - 85px);
+        }
+    }
+
+    &-Title {
+        max-width: 1440px;
+        margin: auto auto 30px;
+        padding: 20px 10px;
+        font-size: 30px;
+
+        @include after-mobile {
+            font-size: 40px;
+        }
+    }
+
+    &-Content {
+        padding: 10px;
+        letter-spacing: 1px;
+        word-break: break-word;
+        color: white;
+        max-width: 1440px;
+        margin: auto;
+
+        p {
+            font-size: 16px;
+        }
+    }
+}

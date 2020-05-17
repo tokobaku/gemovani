@@ -14,6 +14,7 @@ import GalleriesPage from 'Route/GalleriesPage';
 import GalleryPage from 'Route/GalleryPage';
 import FaqPage from 'Route/FaqPage';
 import VillagesPage from 'Route/VillagesPage';
+import VillagePage from 'Route/VillagePage';
 
 export type ComponentType = React.ComponentType<RouteComponentProps> | React.ComponentType | React.ReactNode;
 
@@ -57,6 +58,7 @@ export default class AppRouter extends React.PureComponent {
                 <Route path="/galleries" component={GalleriesPage} />
                 <Route path="/faq" component={FaqPage} />
                 <Route path="/villages" component={VillagesPage} />
+                <Route path="/village/:urlKey" component={VillagePage} />
             </>
         );
     }
