@@ -37,6 +37,8 @@ export default class TourPage extends React.PureComponent<TourPageProps, TourPag
     }
 
     componentDidMount(): void {
+        window.scrollTo(0, 0);
+
         window.addEventListener('scroll', debounce(() => {
             const { offsetToSticky } = this.props;
             this.setState({ isSticky: window.scrollY > offsetToSticky });
