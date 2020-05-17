@@ -8,6 +8,7 @@ import Asset from 'Helper/Asset';
 import { getTranslation } from 'Helper/Translation';
 import { Village } from 'Store/Villages/Villages.action';
 import Image from 'Component/Image';
+import Map from 'Component/Map';
 
 import 'Route/VillagePage/VillagePage.style';
 
@@ -60,6 +61,18 @@ export default class VillagePage extends React.PureComponent<VillagePageProps, V
         );
     }
 
+    renderMap(): React.ReactNode {
+        const { village } = this.props;
+
+        if (!village) {
+            return null;
+        }
+
+        const { longitude, latitude } = village;
+
+        return <Map longitude={longitude} latitude={latitude} />;
+    }
+
     render(): React.ReactNode {
         const { village } = this.props;
         const { isSticky } = this.state;
@@ -87,6 +100,7 @@ export default class VillagePage extends React.PureComponent<VillagePageProps, V
                         // eslint-disable-next-line react/no-danger
                         dangerouslySetInnerHTML={{ __html: getTranslation(village, 'en')?.description || '' }}
                     />
+                    {this.renderMap()}
                 </article>
             </main>
         );
