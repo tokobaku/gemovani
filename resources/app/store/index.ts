@@ -10,6 +10,7 @@ import ConfigReducer from 'Store/Config/Config.reducer';
 import { Config } from 'Store/Config/Config.action';
 import GalleriesReducer, { GalleriesReducerInterface } from 'Store/Galleries/Galleries.reducer';
 import FaqsReducer, { FaqsReducerInterface } from 'Store/Faqs/Faqs.reducer';
+import VillagesReducer, { VillagesReducerInterface } from 'Store/Villages/Villages.reducer';
 
 export interface ReduxState extends DefaultRootState {
     SlidesReducer: SlidesReducerInterface;
@@ -17,6 +18,7 @@ export interface ReduxState extends DefaultRootState {
     ConfigReducer: Config;
     GalleriesReducer: GalleriesReducerInterface;
     FaqsReducer: FaqsReducerInterface;
+    VillagesReducer: VillagesReducerInterface;
 }
 
 const reducers = {
@@ -24,7 +26,8 @@ const reducers = {
     ToursReducer,
     ConfigReducer,
     GalleriesReducer,
-    FaqsReducer
+    FaqsReducer,
+    VillagesReducer
 };
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore

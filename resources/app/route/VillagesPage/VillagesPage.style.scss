@@ -1,0 +1,57 @@
+/**
+ * @author Tornike Bakuradze <tokobakuradze@gmail.com>
+ */
+
+:root {
+    --villages-per-row: 1;
+
+    @include after-mobile {
+        --villages-per-row: 2;
+    }
+
+    @include desktop-medium {
+        --villages-per-row: 3;
+    }
+}
+
+.VillagesPage {
+    padding-top: var(--header-height);
+    background-color: black;
+
+    &-VillagesWrapper {
+        display: grid;
+        grid-template-columns: repeat(var(--villages-per-row), 1fr);
+        width: 100%;
+        max-width: 1440px;
+        gap: 20px;
+        padding: 1rem;
+        margin: auto;
+    }
+
+    &-HeaderWrapper {
+        max-width: 1440px;
+        margin: 40px auto 50px;
+        padding: 1rem;
+    }
+
+    &-VillagePlaceholder {
+        @include animate-background;
+        height: 300px;
+        width: 100%;
+    }
+
+    &-Image {
+        object-fit: cover;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    &-Link {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    &-ImageLink {
+        display: block;
+    }
+}
