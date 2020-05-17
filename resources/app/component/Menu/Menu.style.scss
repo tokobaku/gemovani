@@ -78,7 +78,7 @@
 
         &_menuOpened {
             display: block;
-            max-height: 200px;
+            max-height: none;
             padding: 10px;
             border: 2px solid white;
         }
@@ -108,6 +108,7 @@
 
     &-Item {
         font-size: 20px;
-        padding: 20px;
+        padding: 3px 10px;
+        display: block;
     }
 }
