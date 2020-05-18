@@ -50,12 +50,12 @@ class Config extends Model
      * @param null|string[] $keys
      * @return Config[]
      */
-    public static function keyValuePairs(array $keys = null): array
+    public static function keyValuePairs(array $keys = []): array
     {
         if ($keys) {
             $allConfigs = DB::table('configs')
                 ->select('key', 'value')
-                ->whereIn('key', ['gemovani_logo'])
+                ->whereIn('key', array_merge(['gemovani_logo', 'title'], $keys))
                 ->get();
         } else {
             $allConfigs = Config::all();
