@@ -27,6 +27,8 @@ export interface SliderProps {
     transitionSpeed: number;
     showCrumbs: boolean;
     showArrows: boolean;
+    slideShow: boolean;
+    slideShowTime: number;
 }
 
 export interface SliderState {
@@ -66,7 +68,9 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
         initialActiveSlide: 0,
         transitionSpeed: 300,
         showCrumbs: true,
-        showArrows: true
+        showArrows: true,
+        slideShow: true,
+        slideShowTime: 3000
     };
 
     constructor(props: SliderProps) {
@@ -91,6 +95,8 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
             this.setVh(window.innerHeight);
             this.forceUpdate();
         }));
+
+        this.playSlideShow();
     }
 
     componentDidUpdate(): void {
@@ -234,8 +240,28 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
         return this.draggableRef.current ? this.draggableRef.current.clientWidth : 0;
     }
 
+    getNextSlideShowSlide(): number {
+        const { activeSlideIndex } = this.state;
+        const { slides } = this.props;
+
+        console.log(activeSlideIndex + 1 >= slides.length ? 0 : activeSlideIndex + 1);
+
+        return activeSlideIndex + 1 >= slides.length ? 0 : activeSlideIndex + 1;
+    }
+
     touchToAbstractSwipeEvent(event: React.TouchEvent): AbstractSwipeEvent {
         return event.touches.item(0);
+    }
+
+    playSlideShow(): void {
+        const { slideShow, slideShowTime } = this.props;
+
+        if (slideShow) {
+            setTimeout(() => {
+                this.setActiveSlide(this.getNextSlideShowSlide());
+                this.playSlideShow();
+            }, slideShowTime);
+        }
     }
 
     renderSlide(index: number, slide: Slide): React.ReactNode {
@@ -282,7 +308,7 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
     renderCrumbs(): React.ReactNode {
         const { showCrumbs, slides } = this.props;
 
-        if (!showCrumbs || !slides.length) return null;
+        if (!showCrumbs || slides.length < 2) return null;
 
         return (
             <ul block="Slider" elem="CrumbsWrapper">
@@ -294,7 +320,11 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
     renderArrow(type: 'left' | 'right'): React.ReactNode {
         const { showArrows, slides } = this.props;
 
-        return showArrows && slides.length && (
+        if (slides.length < 2) {
+            return null;
+        }
+
+        return showArrows && (
             <button block="Slider" elem="Arrow" mods={{ type }} onClick={this.getOnArrowClick(type)}>
                 {type === 'left' ? '<' : '>'}
             </button>
