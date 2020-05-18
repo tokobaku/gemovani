@@ -3,12 +3,17 @@
  */
 
 import * as React from 'react';
-import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
+import {
+    Link as RouterLink,
+    LinkProps as RouterLinkProps,
+    withRouter,
+    RouteComponentProps
+} from 'react-router-dom';
 import { BEMEntity, stringify } from 'rebem-classname';
 
-export interface LinkProps extends BEMEntity, RouterLinkProps {}
+export interface LinkProps extends BEMEntity, RouterLinkProps, RouteComponentProps {}
 
-export default class Link extends React.PureComponent<LinkProps> {
+export class Link extends React.PureComponent<LinkProps> {
     static defaultProps = {
         scrollBehaviour: 'smooth'
     };
@@ -20,9 +25,7 @@ export default class Link extends React.PureComponent<LinkProps> {
         const scrollTo = document.querySelector(to.toString());
 
         if (scrollTo) {
-            window.scrollTo({
-                top: scrollTo.getBoundingClientRect().top,
-                left: scrollTo.getBoundingClientRect().left,
+            scrollTo.scrollIntoView({
                 behavior: 'smooth'
             });
         }
@@ -53,3 +56,7 @@ export default class Link extends React.PureComponent<LinkProps> {
         return <RouterLink className={stringify(this.props)} {...this.props} />;
     }
 }
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+export default withRouter(Link);

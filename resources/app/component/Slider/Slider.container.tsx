@@ -9,9 +9,11 @@ import FetchGraphql from 'Helper/FetchGraphql';
 import SlidesQuery from 'Query/SlidesQuery';
 import { updateSlides, Slide, SlidesAction } from 'Store/Slides/Slides.action';
 import Slider from 'Component/Slider/Slider.component';
+import { Tour } from 'Store/Tours/Tours.action';
 
 export const mapStateToProps = (state: ReduxState): StateProps => ({
-    slides: state.SlidesReducer.slides
+    slides: state.SlidesReducer.slides,
+    tours: state.ToursReducer.tours
 });
 
 export const mapDispatchToProps = (dispatch: React.Dispatch<SlidesAction>): DispatchProps => ({
@@ -24,6 +26,7 @@ export interface DispatchProps {
 
 export interface StateProps {
     slides: Slide[];
+    tours: Tour[];
 }
 
 export interface SliderContainerProps extends DispatchProps, StateProps {}
@@ -43,10 +46,10 @@ export class SliderContainer extends React.Component<SliderContainerProps> {
     }
 
     render(): React.ReactNode {
-        const { slides } = this.props;
+        const { slides, tours } = this.props;
 
         return (
-            <Slider slides={slides} dragDiffThreshold={100} />
+            <Slider slides={slides} tours={tours} dragDiffThreshold={100} />
         );
     }
 }

@@ -14,6 +14,7 @@ import 'Component/Tour/Tour.style';
 
 export interface TourProps {
     tour: TourInterface;
+    nextTourUrlKey: string | null;
 }
 
 export default class Tour extends React.PureComponent<TourProps> {
@@ -49,6 +50,18 @@ export default class Tour extends React.PureComponent<TourProps> {
         );
     }
 
+    renderNextTourArrow(): React.ReactNode {
+        const { nextTourUrlKey } = this.props;
+
+        if (!nextTourUrlKey) {
+            return null;
+        }
+
+        return (
+            <Link to={`#${nextTourUrlKey}`} mix={{ block: 'Tour', elem: 'NextArrow' }} />
+        );
+    }
+
     render(): React.ReactNode {
         const { tour } = this.props;
 
@@ -62,6 +75,7 @@ export default class Tour extends React.PureComponent<TourProps> {
                     />
                     {this.renderTourDetails()}
                 </figure>
+                {this.renderNextTourArrow()}
             </section>
         );
     }

@@ -10,8 +10,8 @@
 
 .Tour {
     background-color: var(--tour-background-color);
-    padding: 20px;
-    height: calc(calc(var(--vh, 1vh) * 100) - var(--header-height));
+    height: calc(calc(var(--vh, 1vh) * 100));
+    padding: var(--header-height) 20px 20px;
 
     &-ImageWrapper {
         overflow: hidden;
@@ -61,6 +61,25 @@
         &:visited {
             color: white;
             text-decoration: none;
+        }
+    }
+
+    &-NextArrow {
+        position: absolute;
+        bottom: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        &:before {
+            content: '';
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-bottom: 1px solid white;
+            border-right: 1px solid white;
+            transform: translate(-50%, -50%) rotate(45deg)
         }
     }
 }

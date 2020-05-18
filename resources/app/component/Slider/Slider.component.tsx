@@ -4,6 +4,7 @@
 
 import * as React from 'react';
 import { Slide } from 'Store/Slides/Slides.action';
+import { Tour } from 'Store/Tours/Tours.action';
 import { getTranslation } from 'Helper/Translation';
 import CustomMath from 'Helper/Math';
 import Asset from 'Helper/Asset';
@@ -11,6 +12,7 @@ import Device from 'Helper/Device';
 import __ from 'Helper/__';
 import { debounce } from 'ts-debounce';
 import Image from 'Component/Image';
+import Link from 'Component/Link';
 
 import 'Component/Slider/Slider.styles';
 
@@ -18,6 +20,7 @@ const ONE_PERCENT = 0.01;
 
 export interface SliderProps {
     slides: Slide[];
+    tours: Tour[];
 
     /**
      * difference of clientX from drag start to drag end in pixels
@@ -66,11 +69,11 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
     static defaultProps = {
         dragDiffThreshold: 50,
         initialActiveSlide: 0,
-        transitionSpeed: 300,
+        transitionSpeed: 600,
         showCrumbs: true,
         showArrows: true,
         slideShow: true,
-        slideShowTime: 3000
+        slideShowTime: 6000
     };
 
     constructor(props: SliderProps) {
@@ -244,8 +247,6 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
         const { activeSlideIndex } = this.state;
         const { slides } = this.props;
 
-        console.log(activeSlideIndex + 1 >= slides.length ? 0 : activeSlideIndex + 1);
-
         return activeSlideIndex + 1 >= slides.length ? 0 : activeSlideIndex + 1;
     }
 
@@ -331,6 +332,18 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
         );
     }
 
+    renderDownArrow(): React.ReactNode {
+        const { tours } = this.props;
+
+        if (!tours || !tours.length) {
+            return null;
+        }
+
+        return (
+            <Link mix={{ block: 'Slider', elem: 'DownArrow' }} to={`#${tours[0].url_key}`} />
+        );
+    }
+
     render(): React.ReactNode {
         const { slides } = this.props;
         const isAndroid = Device.isAndroid();
@@ -354,6 +367,7 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
                 </div>
                 {this.renderCrumbs()}
                 {this.renderArrow('right')}
+                {this.renderDownArrow()}
             </div>
         );
     }

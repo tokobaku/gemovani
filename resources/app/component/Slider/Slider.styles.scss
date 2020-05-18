@@ -6,7 +6,7 @@
     --slider-crumb-color: black;
     --slider-crumb-border-color: white;
     --slider-crumb-selected-size: 1.5;
-    --slider-transition-speed: .3s;
+    --slider-transition-speed: .6s;
     --slider-crumb-size: 15px;
     --slider-text-default-font-size: 30px;
     --slider-arrow-background-color: transparent;
@@ -32,7 +32,7 @@
 
     &-DraggableWrapper {
         --offset-x: 0;
-        transition: transform linear var(--slider-transition-speed);
+        transition: transform ease-in var(--slider-transition-speed);
         display: flex;
         transform: translate3d(var(--offset-x), 0, 0);
         height: 100%;
@@ -160,6 +160,25 @@
                     right: -30px;
                 }
             }
+        }
+    }
+
+    &-DownArrow {
+        position: absolute;
+        bottom: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        &:before {
+            content: '';
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-bottom: 1px solid white;
+            border-right: 1px solid white;
+            transform: translate(-50%, -50%) rotate(45deg)
         }
     }
 }
