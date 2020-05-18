@@ -10,7 +10,13 @@ export interface Config {
     config: {
         title: string;
         gemovani_logo: string;
+        about_us: AboutUs[];
     };
+}
+
+export interface AboutUs {
+    locale: string;
+    content: string;
 }
 
 export interface ConfigAction {

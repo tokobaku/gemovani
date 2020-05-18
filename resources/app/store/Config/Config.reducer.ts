@@ -11,7 +11,9 @@ const initialState = {
     config: {
         title: DEFAULT_TITLE,
         // eslint-disable-next-line @typescript-eslint/camelcase
-        gemovani_logo: DEFAULT_GEMOVANI_LOGO
+        gemovani_logo: DEFAULT_GEMOVANI_LOGO,
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        about_us: []
     }
 };
 

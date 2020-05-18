@@ -73,9 +73,15 @@ type TourTranslation {
     tour: Tour! @belongsTo
 }
 
+type AboutUs {
+    locale: String!
+    content: String!
+}
+
 type Config {
     title: String!
     gemovani_logo: String!
+    about_us: [AboutUs]!
 }
 
 type Gallery {

@@ -19,6 +19,15 @@
                value="{{ old('configs.gemovani_logo.value') ?? @$configs['gemovani_logo']['value'] }}">
         <div class="Form-ImageWrapper" id="gemovani-logo-wrapper"></div>
     </div>
+    @foreach(config('gemovani.languages') as $lang)
+    <div class="Form-FormGroup">
+        <input type="hidden" name="configs[about_us_{{$lang['code']}}][key]" value="about_us_{{$lang['code']}}">
+        <label for="about-us-{{$lang['code']}}">About us {{$lang['code']}}</label>
+        <textarea class="Form-Input ToTinyMCE" id="about-us-{{$lang['code']}}"
+                  name="configs[about_us_{{$lang['code']}}][value]"
+        >{{ old("configs.about_us_{$lang['code']}.value") ?? @$configs["about_us_{$lang['code']}"]['value'] }}</textarea>
+    </div>
+    @endforeach
     <div class="Form-FormGroup">
         <input type="submit">
     </div>

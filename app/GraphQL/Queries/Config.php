@@ -26,15 +26,28 @@ class Config
      */
     public function __invoke($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        $config = ConfigModel::keyValuePairs([
+        $config = ConfigModel::keyValuePairs(array_merge([
             'title',
             'gemovani_logo'
-        ]);
+        ]));
+
+        $config['about_us'] = array_map(function ($lang) {
+            return [
+                'locale' => $lang['code'],
+                'content' => ConfigModel::get("about_us_{$lang['code']}")->value
+            ];
+        }, config('gemovani.languages'));
 
         return array_merge(
             [
-            'title' => '',
-            'gemovani_logo' => ''
+                'title' => '',
+                'gemovani_logo' => '',
+                'about_us' => [
+                    [
+                        'locale' => 'en',
+                        'content' => 'About us'
+                    ]
+                ]
             ],
             $config
         );
