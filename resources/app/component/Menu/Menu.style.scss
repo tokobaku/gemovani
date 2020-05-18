@@ -5,6 +5,7 @@
 :root {
     --menu-overlay-arrow-size: 5px;
     --menu-background-color: rgba(0, 0, 0, .5);
+    --menu-width: 200px;
 }
 
 .Menu {
@@ -16,6 +17,7 @@
         transform: translateY(-50%);
         will-change: border-top-color;
         transition: border-top-color linear .3s;
+        z-index: 2;
 
         &.Menu-BurgerButton_menuOpened {
             border-top-color: transparent;
@@ -59,28 +61,25 @@
     }
 
     &-OverlayWrapper {
-        position: absolute;
-        top: 100%;
-        right: 0;
+        position: fixed;
+        top: 0;
+        right: calc(var(--menu-width) * -1);
         background-color: var(--menu-background-color);
         backdrop-filter: blur(10px);
-        border-radius: 10px;
         color: white;
         font-size: 16px;
-        width: 150px;
-        max-height: 0;
+        width: var(--menu-width);
         will-change: max-height, padding;
-        transition: max-height, padding linear .3s;
+        transition: right ease-in .3s;
         overflow: hidden;
-        padding: 0;
         text-align: right;
-        margin-top: 20px;
+        padding: var(--header-height) 10px 10px;
+        padding-right: 1rem;
+        height: calc(var(--vh) * 100);
 
         &_menuOpened {
+            right: 0;
             display: block;
-            max-height: none;
-            padding: 10px;
-            border: 2px solid white;
         }
 
         &:before {
