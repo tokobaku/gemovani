@@ -27,15 +27,18 @@
         height: 100%;
     }
 
-    &-TourDetails {
+    &-TourDetailsWrapper {
         position: absolute;
         color: var(--tour-details-color);
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        padding: 10px;
         border: 2px solid var(--tour-details-color);
         background: rgba(0, 0, 0, .5);
+    }
+
+    &-TourDetails {
+        padding: 10px;
     }
 
     &-Title {
@@ -51,6 +54,9 @@
         color: white;
         font-size: 16px;
         margin-top: 20px;
+        border-top: 1px solid white;
+        text-align: center;
+        padding: 10px 0;
 
         &:visited {
             color: white;

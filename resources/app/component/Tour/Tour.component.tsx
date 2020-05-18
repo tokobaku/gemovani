@@ -25,12 +25,20 @@ export default class Tour extends React.PureComponent<TourProps> {
         const tourUrl = `/tour/${url_key}`;
 
         return (
-            <div block="Tour" elem="TourDetails">
-                <h2 block="Tour" elem="Title">{translation?.title}</h2>
-                <dl>
-                    <dt block="Tour" elem="Term">Dates</dt>
-                    <dd>{__('%s - %s', tour.start_date.toDateString(), tour.end_date.toDateString())}</dd>
-                </dl>
+            <div block="Tour" elem="TourDetailsWrapper">
+                <div block="Tour" elem="TourDetails">
+                    <h2 block="Tour" elem="Title">{translation?.title}</h2>
+                    <dl>
+                        <dt block="Tour" elem="Term">Dates</dt>
+                        <dd>
+                            {__(
+                                '%s - %s',
+                                tour.start_date.toLocaleDateString(),
+                                tour.end_date.toLocaleDateString()
+                            )}
+                        </dd>
+                    </dl>
+                </div>
                 <Link
                     to={tourUrl}
                     mix={{ block: 'Tour', elem: 'Link' }}
