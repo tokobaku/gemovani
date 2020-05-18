@@ -76,6 +76,7 @@
         width: 90%;
         color: white;
         text-align: center;
+        font-family: marshmallow, serif;
 
         @include after-mobile {
             max-width: 70%;
@@ -138,7 +139,6 @@
         &:hover {
             opacity: 1;
         }
-
 
         &_type {
             &_left {
