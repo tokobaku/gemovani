@@ -12,10 +12,14 @@ export interface MenuState {
     menuOpened: boolean;
 }
 
-export default class Menu extends React.PureComponent<{}, MenuState> {
+export interface MenuProps {
+    openPopup: () => void;
+}
+
+export default class Menu extends React.PureComponent<MenuProps, MenuState> {
     menuRef = React.createRef<HTMLDivElement>();
 
-    constructor(props = {}) {
+    constructor(props: MenuProps) {
         super(props);
 
         this.state = {
@@ -23,6 +27,7 @@ export default class Menu extends React.PureComponent<{}, MenuState> {
         };
 
         this.onLinkClick = this.onLinkClick.bind(this);
+        this.onContactClick = this.onContactClick.bind(this);
     }
 
     componentDidMount(): void {
@@ -45,6 +50,13 @@ export default class Menu extends React.PureComponent<{}, MenuState> {
         this.setState({ menuOpened: false });
     }
 
+    onContactClick(): void {
+        const { openPopup } = this.props;
+
+        this.setState({ menuOpened: false });
+        openPopup();
+    }
+
     renderMenuOverlay(): React.ReactNode {
         const { menuOpened } = this.state;
 
@@ -61,7 +73,7 @@ export default class Menu extends React.PureComponent<{}, MenuState> {
                         <Link block="Menu" elem="Item" to="/galleries" onClick={this.onLinkClick}>{__('Gallery')}</Link>
                     </li>
                     <li>
-                        <Link block="Menu" elem="Item" to="/contact" onClick={this.onLinkClick}>{__('Contact')}</Link>
+                        <button block="Menu" elem="Item" onClick={this.onContactClick}>{__('Contact')}</button>
                     </li>
                     <li>
                         <Link block="Menu" elem="Item" to="/faq" onClick={this.onLinkClick}>{__('FAQ')}</Link>

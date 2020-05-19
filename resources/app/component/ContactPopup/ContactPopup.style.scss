@@ -1,0 +1,40 @@
+/**
+ * @author Tornike Bakuradze <tokobakuradze@gmail.com>
+ */
+
+.Popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(var(--vh) * 100);
+    z-index: 5;
+    background-color: #0008;
+
+    &-Wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        max-width: 720px;
+        padding: 1rem;
+        background-color: #111c;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 20px 17.9px rgba(0, 0, 0, 0.072), 0 20px 25px rgba(0, 0, 0, 0.086), 0 10px 10px rgba(0, 0, 0, 0.12);
+    }
+
+    &-Input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+
+        &:not(:last-child) {
+            margin-bottom: 50px;
+        }
+    }
+
+    &-Label {
+        margin: 10px 0;
+    }
+}

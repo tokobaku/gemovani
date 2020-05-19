@@ -16,6 +16,7 @@ import FaqPage from 'Route/FaqPage';
 import VillagesPage from 'Route/VillagesPage';
 import VillagePage from 'Route/VillagePage';
 import AboutUsPage from 'Route/AboutUsPage';
+import ContactPopup from 'Component/ContactPopup';
 
 export type ComponentType = React.ComponentType<RouteComponentProps> | React.ComponentType | React.ReactNode;
 
@@ -30,6 +31,10 @@ export default class AppRouter extends React.PureComponent {
         {
             component: <Header />,
             sortOrder: 0
+        },
+        {
+            component: <ContactPopup />,
+            sortOrder: 10
         }
     ];
 

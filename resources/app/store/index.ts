@@ -11,6 +11,7 @@ import { Config } from 'Store/Config/Config.action';
 import GalleriesReducer, { GalleriesReducerInterface } from 'Store/Galleries/Galleries.reducer';
 import FaqsReducer, { FaqsReducerInterface } from 'Store/Faqs/Faqs.reducer';
 import VillagesReducer, { VillagesReducerInterface } from 'Store/Villages/Villages.reducer';
+import PopupReducer, { PopupReducerInterface } from 'Store/Popup/Popup.reducer';
 
 export interface ReduxState extends DefaultRootState {
     SlidesReducer: SlidesReducerInterface;
@@ -19,6 +20,7 @@ export interface ReduxState extends DefaultRootState {
     GalleriesReducer: GalleriesReducerInterface;
     FaqsReducer: FaqsReducerInterface;
     VillagesReducer: VillagesReducerInterface;
+    PopupReducer: PopupReducerInterface;
 }
 
 const reducers = {
@@ -27,7 +29,8 @@ const reducers = {
     ConfigReducer,
     GalleriesReducer,
     FaqsReducer,
-    VillagesReducer
+    VillagesReducer,
+    PopupReducer
 };
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore

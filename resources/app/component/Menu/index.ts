@@ -2,4 +2,4 @@
  * @author Tornike Bakuradze <tokobakuradze@gmail.com>
  */
 
-export { default } from 'Component/Menu/Menu.component';
+export { default } from 'Component/Menu/Menu.container';
