@@ -1,0 +1,31 @@
+/**
+ * @author Tornike Bakuradze <tokobakuradze@gmail.com>
+ */
+
+.Input {
+    margin-bottom: 20px;
+
+    &-Label {
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    &-Input {
+        width: 100%;
+        padding: 10px;
+
+        &_type_textarea {
+            height: 100px;
+
+            @include after-mobile {
+                height: 200px;
+            }
+        }
+    }
+
+    &-Error {
+        margin-top: 10px;
+        color: red;
+        font-weight: bold;
+    }
+}

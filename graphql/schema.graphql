@@ -15,6 +15,10 @@ type Query {
     villages: [Village]! @all(model: "App\\Location\\Location")
 }
 
+type Mutation {
+    sendEmail(email: String!, message: String!): EmailResponse!
+}
+
 input OrderByClause {
     field: String!
     order: SortOrder!
@@ -116,4 +120,14 @@ type VillageTranslation {
     title: String!
     description: String!
     tour: Tour! @belongsTo
+}
+
+enum EmailResponseResult {
+    SUCCESS
+    FAILURE
+}
+
+type EmailResponse {
+    result: EmailResponseResult!
+    message: String
 }

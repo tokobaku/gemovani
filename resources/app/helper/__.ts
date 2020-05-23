@@ -11,7 +11,7 @@ const __ = (format: string, ...replace: string[]): string => {
         if (process.env.NODE_ENV === 'development') {
             if (!translations || !translations[format]) {
                 // eslint-disable-next-line no-console
-                console.warn(`Warning %s No translation found for '${format.toString()}'`);
+                // console.warn(`Warning %s No translation found for '${format.toString()}'`);
             }
         }
 
@@ -25,7 +25,7 @@ const __ = (format: string, ...replace: string[]): string => {
 
         if (process.env.NODE_ENV === 'development') {
             // eslint-disable-next-line no-console
-            console.warn('Warning: translations object not set in localStorage %s');
+            // console.warn('Warning: translations object not set in localStorage %s');
         }
 
         return format.replace(/%s/g, () => replace[i++]);

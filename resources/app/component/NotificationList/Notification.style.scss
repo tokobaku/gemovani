@@ -1,0 +1,31 @@
+/**
+ * @author Tornike Bakuradze <tokobakuradze@gmail.com>
+ */
+
+.NotificationList {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    margin-top: var(--header-height);
+
+    @include after-mobile {
+        right: 1rem;
+        max-width: 300px;
+        text-align: right;
+    }
+
+    &-Notification {
+        padding: 10px;
+        width: 100%;
+        animation: NotificationAnimation 5s;
+
+        &_type_success {
+            background: green;
+        }
+
+        &_type_error {
+            background: red;
+        }
+    }
+}
