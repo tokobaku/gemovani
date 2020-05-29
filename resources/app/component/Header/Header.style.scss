@@ -44,6 +44,7 @@
         top: 50%;
         transform: translate(-50%, -50%);
         color: white;
+        font-family: creampy, serif;
 
         @include mobile {
             font-size: 18px;
