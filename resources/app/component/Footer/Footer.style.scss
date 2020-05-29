@@ -1,0 +1,70 @@
+/**
+ * @author Tornike Bakuradze <tokobakuradze@gmail.com>
+ */
+
+:root {
+    --footer-background-color: black;
+}
+
+.Footer {
+    background-color: var(--footer-background-color);
+    font-size: 22px;
+    font-weight: bold;
+
+    &-Wrapper {
+        margin: auto;
+        padding: 40px 1rem;
+        max-width: 1440px;
+    }
+
+    &-InfoLabel {
+        font-size: 12px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+
+    &-DetailsWrapper {
+        @include after-mobile {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+
+    &-SupportedBy {
+        @include after-mobile {
+            margin: auto;
+            width: fit-content;
+        }
+    }
+
+    &-Gemovani {
+        display: inline-flex;
+        align-items: center;
+    }
+
+    &-GemovaniLogo {
+        margin-left: 10px;
+    }
+
+    &-DevelopedBy {
+        font-weight: bold;
+
+        @include after-mobile {
+            text-align: right;
+        }
+    }
+
+    &-Detail {
+        &:not(:first-child) {
+            @include mobile {
+                margin-top: 40px;
+            }
+        }
+
+        &:not(:last-child) {
+            @include mobile {
+                margin-bottom: 40px;
+            }
+        }
+    }
+}

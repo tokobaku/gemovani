@@ -14,6 +14,7 @@ export interface HeaderProps {
     title: string;
     gemovani_logo: string;
     scrollOffsetToBlur: number;
+    openPopup: () => void;
 }
 
 export interface HeaderState {
@@ -56,14 +57,14 @@ export default class Header extends React.PureComponent<HeaderProps, HeaderState
         }
     }
 
-    renderGemovaniLogo(): React.ReactNode {
+    renderContact(): React.ReactNode {
         // eslint-disable-next-line @typescript-eslint/camelcase
-        const { gemovani_logo } = this.props;
+        const { openPopup } = this.props;
 
         return (
-            <a href="https://gemovani.ge" rel="noopener noreferrer" target="_blank" block="Header" elem="GemovaniLogo">
-                <img src={Asset.getImageUrl(gemovani_logo, { w: 40 })} alt={__('Gemovani')} />
-            </a>
+            <button block="Header" elem="ContactButton" onClick={openPopup}>
+                {__('Contact Us')}
+            </button>
         );
     }
 
@@ -88,7 +89,7 @@ export default class Header extends React.PureComponent<HeaderProps, HeaderState
 
         return (
             <header block="Header" mods={{ scrolledDown }}>
-                {this.renderGemovaniLogo()}
+                {this.renderContact()}
                 {this.renderTitle()}
                 {this.renderMenu()}
             </header>

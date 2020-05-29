@@ -4,7 +4,6 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import Header from 'Component/Header/Header.component';
 import { ReduxState } from 'Store';
 import {
     Config,
@@ -14,11 +13,10 @@ import {
 } from 'Store/Config/Config.action';
 import ConfigQuery from 'Query/ConfigQuery';
 import FetchGraphql from 'Helper/FetchGraphql';
-import { openPopup, PopupActionInterface } from 'Store/Popup/Popup.action';
+import Footer from 'Component/Footer/Footer.component';
 
-export const mapDispatchToProps = (dispatch: React.Dispatch<ConfigAction | PopupActionInterface>): DispatchProps => ({
-    updateConfig: (config: Config): void => dispatch(updateConfig(config)),
-    openPopup: (): void => dispatch(openPopup())
+export const mapDispatchToProps = (dispatch: React.Dispatch<ConfigAction>): DispatchProps => ({
+    updateConfig: (config: Config): void => dispatch(updateConfig(config))
 });
 
 export const mapStateToProps = (state: ReduxState): StateProps => ({
@@ -27,12 +25,11 @@ export const mapStateToProps = (state: ReduxState): StateProps => ({
 
 export interface DispatchProps {
     updateConfig(config: Config): void;
-    openPopup(): void;
 }
 
 export interface HeaderContainerProps extends DispatchProps, StateProps {}
 
-export class HeaderContainer extends React.PureComponent<HeaderContainerProps> {
+export class FooterContainer extends React.PureComponent<HeaderContainerProps> {
     componentDidMount(): void {
         this.requestConfig();
     }
@@ -49,13 +46,13 @@ export class HeaderContainer extends React.PureComponent<HeaderContainerProps> {
 
     render(): React.ReactNode {
         // eslint-disable-next-line @typescript-eslint/camelcase
-        const { config: { title, gemovani_logo }, openPopup } = this.props;
+        const { config: { title, gemovani_logo } } = this.props;
 
         return (
             // eslint-disable-next-line @typescript-eslint/camelcase
-            <Header title={title} gemovani_logo={gemovani_logo} openPopup={openPopup} />
+            <Footer title={title} gemovaniLogo={gemovani_logo} />
         );
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(FooterContainer);

@@ -18,6 +18,7 @@ import VillagePage from 'Route/VillagePage';
 import AboutUsPage from 'Route/AboutUsPage';
 import ContactPopup from 'Component/ContactPopup';
 import NotificationList from 'Component/NotificationList';
+import Footer from 'Component/Footer';
 
 export type ComponentType = React.ComponentType<RouteComponentProps> | React.ComponentType | React.ReactNode;
 
@@ -44,7 +45,10 @@ export default class AppRouter extends React.PureComponent {
     ];
 
     renderAfterPage: CommonPageComponent[] = [
-        // TODO: add footer here
+        {
+            component: <Footer />,
+            sortOrder: 0
+        }
     ];
 
     renderSortedComponents(componentsToRender: CommonPageComponent[]): ComponentType[] {
