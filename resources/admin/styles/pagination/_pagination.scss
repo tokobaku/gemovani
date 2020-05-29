@@ -1,0 +1,13 @@
+/**
+ * @author Tornike Bakuradze <tokobakuradze@gmail.com>
+ */
+
+.pagination {
+    display: flex;
+    margin: 50px 0;
+
+    .page-item {
+        margin: 10px;
+        font-size: 18px;
+    }
+}

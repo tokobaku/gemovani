@@ -3,7 +3,8 @@
  */
 
 :root {
-    --navigation-width: 100px;
+    --navigation-width: 200px;
+    --notification-color: red;
 }
 
 .Nav {
@@ -23,5 +24,11 @@
         a {
             color: $white;
         }
+    }
+
+    &-NotificationCount {
+        background-color: var(--notification-color);
+        border-radius: 50%;
+        padding: 5px 10px;
     }
 }

@@ -11,14 +11,14 @@ export interface OnSuccess {
 /**
  * Get query strings for slides queries
  */
-export class SendEmailMutation {
+export class SendContactMutation {
     /**
      * get query string for querying all slides sorted by sortOrder
      */
     getSendEmailQuery(email: string, message: string): string {
         return `
         mutation {
-            sendEmail(email: "${email}", message: "${message}") {
+            sendContact(email: "${email}", message: "${message}") {
                 result
                 message
             }
@@ -34,4 +34,4 @@ export class SendEmailMutation {
     }
 }
 
-export default new SendEmailMutation();
+export default new SendContactMutation();

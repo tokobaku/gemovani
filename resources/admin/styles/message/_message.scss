@@ -1,0 +1,13 @@
+/**
+ * @author Tornike Bakuradze <tokobakuradze@gmail.com>
+ */
+
+:root {
+    --not-seen-message-color: #58239133;
+}
+
+.ContactMessage {
+    &_notSeen {
+        background-color: var(--not-seen-message-color);
+    }
+}

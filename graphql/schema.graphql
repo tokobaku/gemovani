@@ -16,7 +16,7 @@ type Query {
 }
 
 type Mutation {
-    sendEmail(email: String!, message: String!): EmailResponse!
+    sendContact(email: String!, message: String!): ContactResponse!
 }
 
 input OrderByClause {
@@ -122,12 +122,12 @@ type VillageTranslation {
     tour: Tour! @belongsTo
 }
 
-enum EmailResponseResult {
+enum ContactResponseResult {
     SUCCESS
     FAILURE
 }
 
-type EmailResponse {
-    result: EmailResponseResult!
+type ContactResponse {
+    result: ContactResponseResult!
     message: String
 }

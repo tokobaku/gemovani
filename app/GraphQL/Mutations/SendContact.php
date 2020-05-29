@@ -5,16 +5,15 @@
 
 namespace App\GraphQL\Mutations;
 
-use App\Mail\ContactEmail;
+use App\ContactMessage;
 use GraphQL\Type\Definition\ResolveInfo;
-use Illuminate\Support\Facades\Mail;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 /**
  * Class Config
  * Resolves config query in gql
  */
-class SendEmail
+class SendContact
 {
     /**
      * Return a value for the field.
@@ -27,8 +26,10 @@ class SendEmail
      */
     public function __invoke($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
-        Mail::to('tokobakuradze@gmail.com')
-            ->send(new ContactEmail($args['email'], $args['message']));
+        $contactMessage = new ContactMessage();
+        $contactMessage->message = $args['message'];
+        $contactMessage->email = $args['email'];
+        $contactMessage->save();
 
         return [
             'result' => 'SUCCESS',

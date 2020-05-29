@@ -16,9 +16,13 @@ export const NOTIFICATION_TIME = 5000;
 
 export default class NotificationList extends React.PureComponent<NotificationProps> {
     componentDidUpdate(): void {
-        const { popNotification } = this.props;
+        const { popNotification, notifications } = this.props;
 
-        setTimeout(popNotification, NOTIFICATION_TIME);
+        setTimeout(() => {
+            if (notifications.length > 0) {
+                popNotification();
+            }
+        }, NOTIFICATION_TIME);
     }
 
     renderNotification(notification: Notification, index: number): React.ReactNode {

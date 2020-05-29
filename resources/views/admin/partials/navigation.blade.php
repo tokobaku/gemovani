@@ -27,5 +27,11 @@
         <li class="Nav-MenuItem">
             <a href="{{ url('/admin/config') }}">{{ __('admin.config') }}</a>
         </li>
+        <li class="Nav-MenuItem">
+            <a href="{{ url('/admin/messages') }}">{{ __('admin.messages') }}</a>
+            @if ($newMessagesCount = \App\ContactMessage::getNotSeenMessages()->count())
+            <span class="Nav-NotificationCount">{{ $newMessagesCount }}</span>
+            @endif
+        </li>
     </ul>
 </nav>

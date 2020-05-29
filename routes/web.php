@@ -45,6 +45,9 @@ Route::group(['prefix' =>'admin', 'middleware' => 'auth'], function () {
     Route::get('/config', 'ConfigController@index');
     Route::post('/config', 'ConfigController@save');
 
+    Route::resource('messages', 'ContactMessageController');
+    Route::post('/messages/delete', 'ContactMessageController@massDelete');
+
     Route::get('{path}', function () {
         return view('admin.404');
     })->where('path', '.*');

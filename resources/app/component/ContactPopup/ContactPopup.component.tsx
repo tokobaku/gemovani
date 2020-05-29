@@ -5,7 +5,7 @@
 import * as React from 'react';
 import __ from 'Helper/__';
 import Validator from 'Helper/Validator';
-import SendEmailMutation from 'Query/SendEmailMutation';
+import SendContactMutation from 'Query/SendContactMutation';
 import { StateProps, DispatchProps } from 'Component/ContactPopup/ContactPopup.container';
 import Input from 'Component/Input';
 
@@ -98,7 +98,7 @@ export default class ContactPopup extends React.PureComponent<ContactPopupProps,
 
         if (validMessage && validEmail) {
             this.setState({ messageIsSending: true });
-            SendEmailMutation.sendEmailQuery(email, message, (response) => {
+            SendContactMutation.sendEmailQuery(email, message, (response) => {
                 response.json()
                     .then((data) => {
                         if (data.errors) {
