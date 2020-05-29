@@ -86,6 +86,7 @@ type Config {
     title: String!
     gemovani_logo: String!
     about_us: [AboutUs]!
+    gemovani_sound: String!
 }
 
 type Gallery {

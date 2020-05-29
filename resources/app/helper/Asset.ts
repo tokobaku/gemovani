@@ -10,4 +10,8 @@ export default class Asset {
     public static getImageUrl(image: string, queryParams?: object): string {
         return `${IMAGE_URL_PREFIX}${image}?${QueryString.convertObjectToQueryString(queryParams || {})}`;
     }
+
+    public static getAudioUrl(audioPath: string): string {
+        return `/sound/${audioPath}`;
+    }
 }

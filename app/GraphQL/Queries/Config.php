@@ -28,7 +28,8 @@ class Config
     {
         $config = ConfigModel::keyValuePairs(array_merge([
             'title',
-            'gemovani_logo'
+            'gemovani_logo',
+            'gemovani_sound'
         ]));
 
         $config['about_us'] = array_map(function ($lang) {
@@ -47,7 +48,8 @@ class Config
                         'locale' => 'en',
                         'content' => 'About us'
                     ]
-                ]
+                ],
+                'gemovani_sound' => ''
             ],
             $config
         );

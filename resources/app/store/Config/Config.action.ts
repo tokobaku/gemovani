@@ -10,6 +10,7 @@ export interface Config {
     config: {
         title: string;
         gemovani_logo: string;
+        gemovani_sound: string;
         about_us: AboutUs[];
     };
 }

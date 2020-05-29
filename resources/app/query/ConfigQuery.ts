@@ -9,6 +9,7 @@ export class ConfigQuery {
             config {
                 title
                 gemovani_logo
+                gemovani_sound
                 about_us {
                     locale
                     content

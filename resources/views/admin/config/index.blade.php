@@ -19,6 +19,12 @@
                value="{{ old('configs.gemovani_logo.value') ?? @$configs['gemovani_logo']['value'] }}">
         <div class="Form-ImageWrapper" id="gemovani-logo-wrapper"></div>
     </div>
+    <div class="Form-FormGroup">
+        <button id="gemovani-sound">{{ __('admin.gemovani-sound') }}</button>
+        <input type="hidden" name="configs[gemovani_sound][key]" value="gemovani_sound">
+        <input class="Form-Input" id="gemovani-sound-input" name="configs[gemovani_sound][value]"
+               value="{{ old('configs.gemovani_sound.value') ?? @$configs['gemovani_sound']['value'] }}">
+    </div>
     @foreach(config('gemovani.languages') as $lang)
     <div class="Form-FormGroup">
         <input type="hidden" name="configs[about_us_{{$lang['code']}}][key]" value="about_us_{{$lang['code']}}">
@@ -53,6 +59,20 @@
                 inputId: 'gemovani-logo-image',
                 onFileSelected: file => {
                     displayImage(file);
+                }
+            });
+
+            selectImagePopup.openPopup();
+        });
+
+        document.querySelector('#gemovani-sound').addEventListener('click', function (event) {
+            event.stopPropagation();
+            event.preventDefault();
+
+            const selectImagePopup = window.createGalleryPopup({
+                inputId: 'gemovani-sound-input',
+                onFileSelected: file => {
+                    document.querySelector('#gemovani-sound-input').value = file;
                 }
             });
 

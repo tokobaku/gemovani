@@ -16,6 +16,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Response;
 
 Auth::routes();
 
@@ -54,6 +55,12 @@ Route::group(['prefix' =>'admin', 'middleware' => 'auth'], function () {
 });
 
 Route::get('/image/{path}', 'ImageController@show')->where('path', '.*');
+
+Route::get('/sound/{path}', function (string $path) {
+    return response()->file(storage_path("app/public/{$path}"), [
+        'Content-Type' => 'audio/mpeg'
+    ]);
+})->where('path', '.*');
 
 Route::get('{path}', function () {
     return view('welcome');

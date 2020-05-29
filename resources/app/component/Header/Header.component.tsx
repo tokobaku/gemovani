@@ -13,6 +13,7 @@ import 'Component/Header/Header.style';
 export interface HeaderProps {
     title: string;
     gemovani_logo: string;
+    gemovani_sound: string;
     scrollOffsetToBlur: number;
     openPopup: () => void;
 }
@@ -84,11 +85,25 @@ export default class Header extends React.PureComponent<HeaderProps, HeaderState
         return <Menu />;
     }
 
+    renderAudio(): React.ReactNode {
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        const { gemovani_sound } = this.props;
+
+        if (!gemovani_sound) return null;
+
+        return (
+            <audio autoPlay loop>
+                <source src={Asset.getAudioUrl(gemovani_sound)} />
+            </audio>
+        );
+    }
+
     render(): React.ReactNode {
         const { scrolledDown } = this.state;
 
         return (
             <header block="Header" mods={{ scrolledDown }}>
+                {this.renderAudio()}
                 {this.renderContact()}
                 {this.renderTitle()}
                 {this.renderMenu()}
