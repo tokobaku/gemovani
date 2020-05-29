@@ -43,5 +43,11 @@ return [
     'create-new-slide' => 'Create New Slide',
     'villages' => 'Villages',
     'config' => 'Config',
-    'reorder' => 'Reorder'
+    'reorder' => 'Reorder',
+    'messages' => 'Messages',
+    'message' => 'Message',
+    'back-to-messages' => 'Back to messages',
+    'no-messages-found' => 'No messages found',
+    'gemovani-sound' => 'Main audio',
+    'gemovani-logo' => 'Gemovani Logo'
 ];
