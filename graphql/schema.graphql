@@ -110,6 +110,7 @@ type Village {
     id: ID!
     url_key: String!
     cover_image: String!
+    audio: String
     longitude: String!
     latitude: String!
     translations: [VillageTranslation]! @hasMany

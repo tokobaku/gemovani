@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * Location entity
  * @property int id
  * @property string cover_image
+ * @property string|null audio
  * @property LocationTranslation[] translations
  */
 class Location extends Model
@@ -21,7 +22,7 @@ class Location extends Model
     /**
      * @inheritDoc
      */
-    protected $fillable = ['url_key', 'longitude', 'latitude', 'cover_image'];
+    protected $fillable = ['url_key', 'longitude', 'latitude', 'cover_image', 'audio'];
 
     /**
      * @return HasMany

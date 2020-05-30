@@ -53,6 +53,7 @@ class Store extends FormRequest
             'cover_image' => 'required',
             'longitude' => 'required|numeric',
             'latitude' => 'required|numeric',
+            'audio' => 'nullable|string|max:255',
             'translations.*.title' => 'required_with:translations.*.description|max:255',
             'translations.*.locale' => 'required',
             'translations.*.description' => 'required_with:translations.*.title',

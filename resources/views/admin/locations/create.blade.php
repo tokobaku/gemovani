@@ -23,6 +23,10 @@
                 <div class="Form-ImageWrapper" id="image-wrapper"></div>
             </div>
             <div class="Form-FormGroup">
+                <button id="choose-audio">{{ __('admin.choose-audio') }}</button>
+                <input class="Form-Input" id="selected-audio" name="audio" value="{{ old('audio') }}">
+            </div>
+            <div class="Form-FormGroup">
                 @foreach(config('gemovani.languages') as $language)
                 <div class="Expandable">
                     <input class="Expandable-Checkbox" type="checkbox" id="translation_{{ $language['code'] }}"

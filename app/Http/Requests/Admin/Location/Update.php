@@ -60,6 +60,7 @@ class Update extends FormRequest
                 Rule::unique('locations', 'url_key')->ignore($location->id)
             ],
             'cover_image' => 'required',
+            'audio' => 'nullable|string|max:255',
             'longitude' => 'required|numeric',
             'latitude' => 'required|numeric',
             'translations.*.title' => 'required_with:translations.*.description|max:255',

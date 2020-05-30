@@ -4,7 +4,6 @@
 
 import * as React from 'react';
 import __ from 'Helper/__';
-import Asset from 'Helper/Asset';
 import Link from 'Component/Link';
 import Menu from 'Component/Menu';
 
@@ -85,25 +84,11 @@ export default class Header extends React.PureComponent<HeaderProps, HeaderState
         return <Menu />;
     }
 
-    renderAudio(): React.ReactNode {
-        // eslint-disable-next-line @typescript-eslint/camelcase
-        const { gemovani_sound } = this.props;
-
-        if (!gemovani_sound) return null;
-
-        return (
-            <audio autoPlay loop>
-                <source src={Asset.getAudioUrl(gemovani_sound)} />
-            </audio>
-        );
-    }
-
     render(): React.ReactNode {
         const { scrolledDown } = this.state;
 
         return (
             <header block="Header" mods={{ scrolledDown }}>
-                {this.renderAudio()}
                 {this.renderContact()}
                 {this.renderTitle()}
                 {this.renderMenu()}

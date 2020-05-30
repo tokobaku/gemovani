@@ -14,6 +14,7 @@ export interface VillageTranslation {
 
 export interface Village {
     cover_image: string;
+    audio: string | null;
     url_key: string;
     longitude: string;
     latitude: string;

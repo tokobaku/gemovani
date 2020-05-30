@@ -49,5 +49,7 @@ return [
     'back-to-messages' => 'Back to messages',
     'no-messages-found' => 'No messages found',
     'gemovani-sound' => 'Main audio',
-    'gemovani-logo' => 'Gemovani Logo'
+    'gemovani-logo' => 'Gemovani Logo',
+    'add-new-location' => 'Add New Location',
+    'choose-audio' => 'Choose Audio'
 ];
