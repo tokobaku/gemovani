@@ -8,13 +8,7 @@
         <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
     </head>
     <body>
-        <div id="root"></div>
         <div id="fb-root"></div>
-        <div class="fb-customerchat"
-             attribution=setup_tool
-             page_id="111269143856601">
-        </div>
-        <script async src="{{ asset('application/main.js') }}?version={{ env('VERSION') }}"></script>
         <script>
             window.fbAsyncInit = function() {
                 FB.init({
@@ -22,6 +16,7 @@
                     version          : 'v7.0'
                 });
             };
+
             (function(d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0];
                 if (d.getElementById(id)) return;
@@ -29,5 +24,11 @@
                 js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));</script>
+        <div class="fb-customerchat"
+             attribution=setup_tool
+             page_id="111269143856601">
+        </div>
+        <div id="root"></div>
+        <script async src="{{ asset('application/main.js') }}?version={{ env('VERSION') }}"></script>
     </body>
 </html>
