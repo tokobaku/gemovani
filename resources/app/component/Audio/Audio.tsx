@@ -31,18 +31,38 @@ export interface DispatchProps {
     changeAudio: (audio: string | null) => void;
 }
 
+export interface AudioState {
+    permissionGranted: boolean;
+}
+
 export interface AudioProps extends RouteComponentProps<VillagePageUrlParams>, StateProps, DispatchProps {}
 
-export class Audio extends React.PureComponent<AudioProps> {
+export class Audio extends React.PureComponent<AudioProps, AudioState> {
     audioRef = React.createRef<HTMLAudioElement>();
+
+    constructor(props: AudioProps) {
+        super(props);
+
+        this.state = {
+            permissionGranted: false
+        };
+    }
 
     componentDidUpdate(prevProps: Readonly<AudioProps>): void {
         const { audio: prevAudio } = prevProps;
         const { audio: currentAudio } = this.props;
+        const { permissionGranted } = this.state;
 
-        if (prevAudio !== currentAudio && this.audioRef.current) {
-            (this.audioRef.current as HTMLAudioElement).load();
-        }
+        document.addEventListener('click', () => {
+            if (prevAudio !== currentAudio && this.audioRef.current && !permissionGranted) {
+                const context = new AudioContext();
+                context.resume()
+                    .then(() => this.setState({ permissionGranted: true }));
+
+                (this.audioRef.current as HTMLAudioElement).load();
+                (this.audioRef.current as HTMLAudioElement).play();
+            }
+        });
     }
 
     render(): React.ReactNode {
