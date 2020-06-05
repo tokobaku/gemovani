@@ -6,6 +6,7 @@
 /public/application
 /public/backend
 /public/packages
+/public/service-worker.js
 /storage/*.key
 /storage/glide
 /storage/app/public

@@ -2,7 +2,7 @@
  * @author Tornike Bakuradze <tokobakuradze@gmail.com>
  */
 
-import { Gallery, GalleryItem } from 'Store/Galleries/Galleries.action';
+import { Gallery } from 'Store/Galleries/Galleries.action';
 import FetchGraphql from 'Helper/FetchGraphql';
 
 export class GalleriesQuery {

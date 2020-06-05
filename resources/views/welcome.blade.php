@@ -30,5 +30,10 @@
         </div>
         <div id="root"></div>
         <script async src="{{ asset('application/main.js') }}?version={{ env('VERSION') }}"></script>
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/service-worker.js');
+            }
+        </script>
     </body>
 </html>

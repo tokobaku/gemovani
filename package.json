@@ -5,6 +5,7 @@
     },
     "private": true,
     "scripts": {
+        "sw": "webpack --config webpack.sw.js",
         "build": "webpack --config webpack.production.js",
         "dev": "webpack --config webpack.development.js",
         "start": "webpack --config webpack.development.js --watch",

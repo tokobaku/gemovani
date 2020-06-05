@@ -7,7 +7,6 @@ import { Gallery, GalleryItem } from 'Store/Galleries/Galleries.action';
 import { getTranslation } from 'Helper/Translation';
 import GalleryHelper from 'Helper/GalleryHelper';
 import __ from 'Helper/__';
-import Asset from 'Helper/Asset';
 import CustomMath from 'Helper/Math';
 import Image from 'Component/Image';
 
