@@ -110,13 +110,17 @@ export default class GalleryPage extends React.PureComponent<GalleryPageProps, G
 
     renderPhoto(galleryItem: GalleryItem, isCarousel = false): React.ReactNode {
         if (isCarousel) {
-            const image = GalleryHelper.getGalleryItemImageSource(galleryItem);
             const maxHeight = this.carouselItemRef.current ? this.carouselItemRef.current.clientHeight : '100%';
+            const width = this.carouselItemRef.current
+                ? this.carouselItemRef.current.clientWidth
+                // eslint-disable-next-line no-magic-numbers
+                : window.innerWidth * 0.9 - 100;
+            const image = GalleryHelper.getGalleryItemImageSource(galleryItem, width);
 
             return (
                 <img
                     mix={{ block: 'GalleryPage', elem: 'Image' }}
-                    src={Asset.getImageUrl(image)}
+                    src={image}
                     alt={image}
                     style={{ maxHeight, maxWidth: '100%' }}
                 />
@@ -149,7 +153,7 @@ export default class GalleryPage extends React.PureComponent<GalleryPageProps, G
         return (
             // eslint-disable-next-line jsx-a11y/no-static-element-interactions
             <div
-                ref={this.carouselItemRef}
+                ref={isCarousel ? this.carouselItemRef : undefined}
                 key={index}
                 block="GalleryPage"
                 elem="GalleryItem"
