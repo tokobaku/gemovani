@@ -8,10 +8,10 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 /**
- * Class AddAudioToLocations
- * Adds audio column to villages
+ * Class AddAudioToTours
+ * Adds audio column to tours
  */
-class AddAudioToLocations extends Migration
+class AddAudioToTours extends Migration
 {
     /**
      * Run the migrations.
@@ -20,7 +20,7 @@ class AddAudioToLocations extends Migration
      */
     public function up()
     {
-        Schema::table('locations', function (Blueprint $table) {
+        Schema::table('tours', function (Blueprint $table) {
             $table->string('audio')->nullable(true);
         });
     }
@@ -32,7 +32,7 @@ class AddAudioToLocations extends Migration
      */
     public function down()
     {
-        Schema::table('locations', function (Blueprint $table) {
+        Schema::table('tours', function (Blueprint $table) {
             $table->dropColumn('audio');
         });
     }

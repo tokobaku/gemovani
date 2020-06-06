@@ -15,6 +15,7 @@ export interface TourTranslation {
 export interface Tour {
     cover_image: string;
     url_key: string;
+    audio: string | null;
     start_date: Date;
     end_date: Date;
     translations: TourTranslation[];

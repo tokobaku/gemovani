@@ -26,6 +26,10 @@
                 <div class="Form-ImageWrapper" id="image-wrapper"></div>
             </div>
             <div class="Form-FormGroup">
+                <button id="choose-audio">{{ __('admin.choose-audio') }}</button>
+                <input class="Form-Input" id="selected-audio" name="audio" value="{{ old('audio') ?? $tour->audio }}">
+            </div>
+            <div class="Form-FormGroup">
                 @error('start_date')
                 <div class="Form-ErrorMessage">{{ $message }}</div>
                 @enderror

@@ -61,7 +61,6 @@ class LocationController extends Controller
             'longitude' => $validated['longitude'],
             'latitude' => $validated['latitude'],
             'cover_image' => $validated['cover_image'],
-            'audio' => $validated['audio']
         ])
         ->save();
 
@@ -105,7 +104,6 @@ class LocationController extends Controller
             'longitude' => $validated['longitude'],
             'latitude' => $validated['latitude'],
             'cover_image' => $validated['cover_image'],
-            'audio' => $validated['audio']
         ])
         ->save();
 

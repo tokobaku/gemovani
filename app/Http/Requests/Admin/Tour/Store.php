@@ -50,6 +50,7 @@ class Store extends FormRequest
         return [
             'url_key' => 'required|string|min:3|max:255|unique:tours',
             'cover_image' => 'required',
+            'audio' => 'nullable|string|max:255',
             'start_date' => 'required|date',
             'end_date' => "required|date|after:$minEndDateString",
             'translations.*.title' => 'required_with:translations.*.description|max:255',

@@ -7,9 +7,12 @@ import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { AudioAction, changeAudio } from 'Store/audio/Audio.action';
 import { ReduxState } from 'Store';
-import { VillagePageUrlParams } from 'Route/VillagePage/VillagePage.container';
-import { Village } from 'Store/Villages/Villages.action';
+import { TourPageContainerParams } from 'Route/TourPage/TourPage.container';
+import { Tour } from 'Store/Tours/Tours.action';
 import Asset from 'Helper/Asset';
+import __ from 'Helper/__';
+
+import 'Component/Audio/Audio.style';
 
 export const mapDispatchToProps = (dispatch: React.Dispatch<AudioAction>): DispatchProps => ({
     changeAudio: (audio: string | null): void => dispatch(changeAudio(audio))
@@ -17,13 +20,13 @@ export const mapDispatchToProps = (dispatch: React.Dispatch<AudioAction>): Dispa
 
 export const mapStateToProps = (state: ReduxState): StateProps => ({
     audio: state.AudioReducer.audio,
-    villages: state.VillagesReducer.villages,
+    tours: state.ToursReducer.tours,
     configAudio: state.ConfigReducer.config.gemovani_sound
 });
 
 export interface StateProps {
     audio: string | null;
-    villages: Village[];
+    tours: Tour[];
     configAudio: string | null;
 }
 
@@ -31,25 +34,64 @@ export interface DispatchProps {
     changeAudio: (audio: string | null) => void;
 }
 
-export interface AudioProps extends RouteComponentProps<VillagePageUrlParams>, StateProps, DispatchProps {}
+export interface AudioProps extends RouteComponentProps<TourPageContainerParams>, StateProps, DispatchProps {}
 
-export class Audio extends React.PureComponent<AudioProps> {
+export interface AudioState {
+    isPaused: boolean;
+}
+
+export class Audio extends React.PureComponent<AudioProps, AudioState> {
     audioRef = React.createRef<HTMLAudioElement>();
 
-    componentDidUpdate(prevProps: Readonly<AudioProps>): void {
+    constructor(props: AudioProps) {
+        super(props);
+
+        this.state = {
+            isPaused: true
+        };
+
+        this.onAudioButtonClick = this.onAudioButtonClick.bind(this);
+    }
+
+    componentDidUpdate(prevProps: Readonly<AudioProps>, prevState: Readonly<AudioState>): void {
         const { audio: prevAudio } = prevProps;
         const { audio: currentAudio } = this.props;
+        const { isPaused: prevIsPaused } = prevState;
+        const { isPaused } = this.state;
 
-        document.addEventListener('click', () => {
-            if (prevAudio !== currentAudio && this.audioRef.current && !window.permissionGranted) {
-                const context = new AudioContext();
-                context.resume()
-                    .then(() => { window.permissionGranted = true; });
+        if (prevAudio !== currentAudio && this.audioRef.current) {
+            (this.audioRef.current as HTMLAudioElement).load();
+        }
 
-                (this.audioRef.current as HTMLAudioElement).load();
+        if (prevIsPaused !== isPaused) {
+            if (isPaused) {
+                (this.audioRef.current as HTMLAudioElement).pause();
+            } else {
                 (this.audioRef.current as HTMLAudioElement).play();
             }
-        });
+        }
+    }
+
+    onAudioButtonClick(): void {
+        this.grantPermission();
+
+        const { isPaused } = this.state;
+
+        this.setState({ isPaused: !isPaused });
+    }
+
+    grantPermission(): void {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        if (!window.permissionGranted) {
+            const context = new AudioContext();
+            context.resume()
+                .then(() => {
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                    // @ts-ignore
+                    window.permissionGranted = true;
+                });
+        }
     }
 
     render(): React.ReactNode {
@@ -57,31 +99,41 @@ export class Audio extends React.PureComponent<AudioProps> {
             location: { pathname },
             audio,
             configAudio,
-            villages,
+            tours,
             changeAudio
         } = this.props;
 
-        if (/^\/village\/.*/.test(pathname) && villages) {
+        const { isPaused } = this.state;
+
+        if (/^\/tour\/.*/.test(pathname) && tours) {
             // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
             // @ts-ignore
-            const { groups: { urlKey } } = /^\/village\/(?<urlKey>[-\d\w]+)/.exec(location.pathname);
+            const { groups: { urlKey } } = /^\/tour\/(?<urlKey>[-\d\w]+)/.exec(location.pathname);
             // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
             // @ts-ignore
-            changeAudio(villages.find((village) => village.url_key === urlKey)?.audio);
+            changeAudio(tours.find((tour) => tour.url_key === urlKey)?.audio);
         } else {
             changeAudio(configAudio);
         }
 
         if (audio) {
             return (
-                // eslint-disable-next-line jsx-a11y/media-has-caption
-                <audio autoPlay loop ref={this.audioRef}>
-                    <source src={Asset.getAudioUrl(audio)} />
-                </audio>
+                <>
+                    <button
+                        block="Audio"
+                        mods={{ isPaused }}
+                        onClick={this.onAudioButtonClick}
+                        aria-label={__('Play audio')}
+                    />
+                    {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+                    <audio loop ref={this.audioRef}>
+                        <source src={Asset.getAudioUrl(audio)} />
+                    </audio>
+                </>
             );
         }
 
-        return '';
+        return <div />;
     }
 }
 

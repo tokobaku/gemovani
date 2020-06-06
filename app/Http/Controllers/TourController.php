@@ -59,7 +59,8 @@ class TourController extends Controller
             'url_key' => $validated['url_key'],
             'start_date' => $validated['start_date'],
             'end_date' => $validated['end_date'],
-            'cover_image' => $validated['cover_image']
+            'cover_image' => $validated['cover_image'],
+            'audio' => $validated['audio']
         ])->save();
 
         foreach ($validated['translations'] as $locale => $translation) {
@@ -103,7 +104,8 @@ class TourController extends Controller
             'url_key' => $validated['url_key'],
             'start_date' => $validated['start_date'],
             'end_date' => $validated['end_date'],
-            'cover_image' => $validated['cover_image']
+            'cover_image' => $validated['cover_image'],
+            'audio' => $validated['audio']
         ])
         ->save();
         $tour->saveTranslations($validated['translations']);

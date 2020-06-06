@@ -3,9 +3,9 @@
  */
 
 import * as React from 'react';
-import __ from 'Helper/__';
 import Link from 'Component/Link';
 import Menu from 'Component/Menu';
+import Audio from 'Component/Audio';
 
 import 'Component/Header/Header.style';
 
@@ -62,9 +62,7 @@ export default class Header extends React.PureComponent<HeaderProps, HeaderState
         const { openPopup } = this.props;
 
         return (
-            <button block="Header" elem="ContactButton" onClick={openPopup}>
-                {__('Contact Us')}
-            </button>
+            <Audio />
         );
     }
 

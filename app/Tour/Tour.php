@@ -14,6 +14,7 @@ use Exception;
  * Model for Tour entity
  * @property TourTranslation translations
  * @property int id
+ * @property string|null audio
  * @method static Tour findOrFail($get)
  */
 class Tour extends Model
@@ -21,7 +22,7 @@ class Tour extends Model
     /**
      * @inheritDoc
      */
-    protected $fillable = ['url_key', 'start_date', 'end_date', 'cover_image'];
+    protected $fillable = ['url_key', 'start_date', 'end_date', 'cover_image', 'audio'];
 
     /**
      * @return HasMany

@@ -14,7 +14,6 @@ export class VillagesQuery {
                 longitude
                 latitude
                 cover_image
-                audio
                 translations {
                     locale
                     title

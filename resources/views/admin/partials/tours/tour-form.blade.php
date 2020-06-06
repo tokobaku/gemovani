@@ -28,6 +28,20 @@
                 selectImagePopup.openPopup();
             });
 
+            document.querySelector('#choose-audio').addEventListener('click', function (event) {
+                event.stopPropagation();
+                event.preventDefault();
+
+                const selectImagePopup = window.createGalleryPopup({
+                    inputId: 'selected-audio',
+                    onFileSelected: file => {
+                        document.querySelector('#selected-audio').value = file;
+                    }
+                });
+
+                selectImagePopup.openPopup();
+            });
+
             // Display image if it's present
             const selectedImage = document.querySelector('#selected-image');
             if (selectedImage.value) {

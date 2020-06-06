@@ -15,6 +15,7 @@ export class ToursQuery {
                 start_date
                 end_date
                 url_key
+                audio
                 translations {
                     locale
                     title

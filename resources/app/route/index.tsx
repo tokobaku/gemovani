@@ -19,7 +19,6 @@ import AboutUsPage from 'Route/AboutUsPage';
 import ContactPopup from 'Component/ContactPopup';
 import NotificationList from 'Component/NotificationList';
 import Footer from 'Component/Footer';
-import Audio from 'Component/Audio';
 
 export type ComponentType = React.ComponentType<RouteComponentProps> | React.ComponentType | React.ReactNode;
 
@@ -84,7 +83,6 @@ export default class AppRouter extends React.PureComponent {
         return (
             <Router>
                 <ScrollToSection />
-                <Audio />
                 {this.renderSortedComponents(this.renderBeforePage)}
                 <Switch>
                     {this.renderRoutes()}

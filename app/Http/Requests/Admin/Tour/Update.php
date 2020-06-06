@@ -59,6 +59,7 @@ class Update extends FormRequest
                 Rule::unique('tours', 'url_key')->ignore($tour->id)
             ],
             'cover_image' => 'required',
+            'audio' => 'nullable|string|max:255',
             'start_date' => 'required|date',
             'end_date' => "required|date|after:$minEndDateString",
             'translations.*.title' => 'required_with:translations.*.description|max:255',

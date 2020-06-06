@@ -63,6 +63,7 @@ type LocationTranslation {
 type Tour {
     id: ID!
     url_key: String!
+    audio: String
     start_date: Date!
     end_date: Date!
     cover_image: String!
@@ -110,7 +111,6 @@ type Village {
     id: ID!
     url_key: String!
     cover_image: String!
-    audio: String
     longitude: String!
     latitude: String!
     translations: [VillageTranslation]! @hasMany
