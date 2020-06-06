@@ -9,18 +9,12 @@ const STATUS_OK = 200;
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME)
-            .then((cache) => {
-                return cache.addAll(urlsToCache);
-            })
+            .then((cache) => cache.addAll(urlsToCache))
     );
 });
 
 self.addEventListener('fetch', (event) => {
-    if (event.request.method !== 'GET') {
-        /* If we don't block the event as shown below, then the request will go to
-           the network as usual.
-        */
-        console.log('WORKER: fetch event ignored.', event.request.method, event.request.url);
+    if (event.request.method !== 'GET' || /admin/.test(event.request.url)) {
         return;
     }
 
