@@ -61,6 +61,9 @@ export class Audio extends React.PureComponent<AudioProps, AudioState> {
 
         if (prevAudio !== currentAudio && this.audioRef.current) {
             (this.audioRef.current as HTMLAudioElement).load();
+            if (!isPaused) {
+                (this.audioRef.current as HTMLAudioElement).play();
+            }
         }
 
         if (prevIsPaused !== isPaused) {
