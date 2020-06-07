@@ -49,11 +49,11 @@ export class HeaderContainer extends React.PureComponent<HeaderContainerProps> {
 
     render(): React.ReactNode {
         // eslint-disable-next-line @typescript-eslint/camelcase
-        const { config: { title, gemovani_logo, gemovani_sound }, openPopup } = this.props;
+        const { config: { title, gemovani_logo, gemovani_sound } } = this.props;
 
         return (
             // eslint-disable-next-line @typescript-eslint/camelcase
-            <Header title={title} gemovani_logo={gemovani_logo} gemovani_sound={gemovani_sound} openPopup={openPopup} />
+            <Header title={title} gemovani_logo={gemovani_logo} gemovani_sound={gemovani_sound} />
         );
     }
 }

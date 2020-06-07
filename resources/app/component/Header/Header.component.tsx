@@ -14,7 +14,6 @@ export interface HeaderProps {
     gemovani_logo: string;
     gemovani_sound: string;
     scrollOffsetToBlur: number;
-    openPopup: () => void;
 }
 
 export interface HeaderState {
@@ -58,9 +57,6 @@ export default class Header extends React.PureComponent<HeaderProps, HeaderState
     }
 
     renderContact(): React.ReactNode {
-        // eslint-disable-next-line @typescript-eslint/camelcase
-        const { openPopup } = this.props;
-
         return (
             <Audio />
         );

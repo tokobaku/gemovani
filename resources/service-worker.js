@@ -14,7 +14,7 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-    if (event.request.method !== 'GET' || /admin/.test(event.request.url)) {
+    if (event.request.method !== 'GET' || /[(admin)(login)(password)]/.test(event.request.url)) {
         return;
     }
 
