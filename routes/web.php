@@ -62,7 +62,7 @@ Route::get('/sound/{path}', function (string $path) {
     ]);
 })->where('path', '.*');
 
-Route::get('{path}', function ($path) {
+Route::get('{path?}', function ($path = '/') {
     $isBot = isset($_SERVER['HTTP_USER_AGENT'])
         && preg_match('/bot|crawl|slurp|spider|mediapartners/i', $_SERVER['HTTP_USER_AGENT']);
 
