@@ -67,7 +67,7 @@ Route::get('{path?}', function ($path = '/') {
         && preg_match('/bot|crawl|slurp|spider|mediapartners/i', $_SERVER['HTTP_USER_AGENT']);
 
     // If use is search engine return pre-rendered content
-    if ($isBot || true) {
+    if ($isBot) {
         $curl = curl_init('localhost:3000/render/' . urlencode(env('APP_URL') . $path));
 
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
