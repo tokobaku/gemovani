@@ -4,6 +4,7 @@
 
 import * as React from 'react';
 import { debounce } from 'ts-debounce';
+import { Helmet } from 'react-helmet';
 import Asset from 'Helper/Asset';
 import { getTranslation } from 'Helper/Translation';
 import { Tour } from 'Store/Tours/Tours.action';
@@ -60,6 +61,29 @@ export default class TourPage extends React.PureComponent<TourPageProps, TourPag
         );
     }
 
+    getTourDescriptionIntro(): string {
+        const { tour } = this.props;
+        const description = tour ? getTranslation(tour, 'en')?.description : '';
+        const descriptionDiv = document.createElement('div');
+        descriptionDiv.innerHTML = description || '';
+
+        return `${descriptionDiv.innerText.substr(0, 100)}...`;
+    }
+
+    renderOgTags(): React.ReactNode {
+        const { tour } = this.props;
+        const title = tour ? getTranslation(tour, 'en')?.title : '';
+        const image = Asset.getFullImageUrl(tour?.cover_image || '');
+
+        return (
+            <Helmet>
+                <meta property="og:title" content={title} />
+                <meta property="og:image" content={image} />
+                <meta property="og:description" content={this.getTourDescriptionIntro()} />
+            </Helmet>
+        );
+    }
+
     render(): React.ReactNode {
         const { tour } = this.props;
         const { isSticky } = this.state;
@@ -70,6 +94,7 @@ export default class TourPage extends React.PureComponent<TourPageProps, TourPag
 
         return (
             <main block="TourPage">
+                {this.renderOgTags()}
                 <article>
                     <Image
                         mix={{ block: 'TourPage', elem: 'CoverImage' }}

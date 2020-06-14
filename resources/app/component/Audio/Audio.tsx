@@ -5,6 +5,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
+import { Helmet } from 'react-helmet';
 import { AudioAction, changeAudio } from 'Store/audio/Audio.action';
 import { ReduxState } from 'Store';
 import { TourPageContainerParams } from 'Route/TourPage/TourPage.container';
@@ -122,6 +123,9 @@ export class Audio extends React.PureComponent<AudioProps, AudioState> {
         if (audio) {
             return (
                 <>
+                    <Helmet>
+                        <meta property="og:audio" content={`${location.hostname}${Asset.getAudioUrl(audio)}`} />
+                    </Helmet>
                     <button
                         block="Audio"
                         mods={{ isPaused }}

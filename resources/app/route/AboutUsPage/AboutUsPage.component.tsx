@@ -3,6 +3,8 @@
  */
 
 import * as React from 'react';
+import { Helmet } from 'react-helmet';
+import Asset from 'Helper/Asset';
 import { AboutUs } from 'Store/Config/Config.action';
 import { getTranslation } from 'Helper/Translation';
 import CustomMath from 'Helper/Math';
@@ -47,6 +49,46 @@ export default class AboutUsPage extends React.PureComponent<AboutUsPageProps> {
         );
     }
 
+    getAboutUsIntroText(): string {
+        const aboutUs = this.getAboutUs();
+        if (!aboutUs) {
+            return '';
+        }
+
+        const aboutUsDiv = document.createElement('div');
+        aboutUsDiv.innerHTML = aboutUs?.content;
+
+        return `${aboutUsDiv.innerText.substr(0, 100)}...`;
+    }
+
+    getAboutUsImage(): string | undefined {
+        const aboutUs = this.getAboutUs();
+        if (!aboutUs) {
+            return undefined;
+        }
+
+        const aboutUsDiv = document.createElement('div');
+        aboutUsDiv.innerHTML = aboutUs.content;
+
+        const img = aboutUsDiv.querySelector('img');
+        if (img) {
+            return Asset.getFullImageUrl(img.src);
+        }
+
+        return undefined;
+    }
+
+    renderOgTags(): React.ReactNode {
+        const aboutUsImage = this.getAboutUsImage();
+
+        return (
+            <Helmet>
+                <meta property="og:description" content={this.getAboutUsIntroText()} />
+                {aboutUsImage && <meta property="og:image" content={aboutUsImage} />}
+            </Helmet>
+        )
+    }
+
     render(): React.ReactNode {
         const aboutUs = this.getAboutUs();
 
@@ -56,6 +98,7 @@ export default class AboutUsPage extends React.PureComponent<AboutUsPageProps> {
 
         return (
             <div block="AboutUsPage">
+                {this.renderOgTags()}
                 {/* eslint-disable-next-line react/no-danger */}
                 <div block="AboutUsPage" elem="Wrapper" dangerouslySetInnerHTML={{ __html: aboutUs.content }} />
             </div>

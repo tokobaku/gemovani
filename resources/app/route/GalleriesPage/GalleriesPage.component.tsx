@@ -3,12 +3,14 @@
  */
 
 import * as React from 'react';
+import {Helmet} from 'react-helmet';
 import __ from 'Helper/__';
 import GalleryHelper from 'Helper/GalleryHelper';
 import { getTranslation } from 'Helper/Translation';
 import { Gallery } from 'Store/Galleries/Galleries.action';
 import Link from 'Component/Link';
 import Image from 'Component/Image';
+import Asset from 'Helper/Asset';
 
 import 'Route/GalleriesPage/GalleriesPage.style';
 
@@ -83,9 +85,39 @@ export default class GalleriesPage extends React.PureComponent<GalleriesPageProp
         return galleries.map((gallery) => this.renderGallery(gallery));
     }
 
+    getOgImage(): string {
+        const { galleries } = this.props;
+
+        if (!galleries.length) {
+            return '';
+        }
+
+        const img = GalleryHelper.getGalleryCoverImage(galleries[0]) || '';
+
+        try {
+            if (new URL(img).hostname !== location.hostname) {
+                return img;
+            }
+        } catch (e) {
+            return Asset.getFullImageUrl(img);
+        }
+
+        return '';
+    }
+
+    renderOgTags(): React.ReactNode {
+        return (
+            <Helmet>
+                <meta property="og:title" content={__('Gemovani Villa - Galleries')} />
+                <meta property="og:image" content={this.getOgImage()} />
+            </Helmet>
+        )
+    }
+
     render(): React.ReactNode {
         return (
             <div block="GalleriesPage">
+                {this.renderOgTags()}
                 <h1 block="GalleriesPage" elem="PageTitle">{__('Galleries')}</h1>
                 <div block="GalleriesPage" elem="Wrapper">
                     {this.renderGalleries()}

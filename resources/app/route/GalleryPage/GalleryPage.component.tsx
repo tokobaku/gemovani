@@ -11,6 +11,8 @@ import CustomMath from 'Helper/Math';
 import Image from 'Component/Image';
 
 import 'Route/GalleryPage/GalleryPage.style';
+import Asset from "Helper/Asset";
+import {Helmet} from "react-helmet";
 
 export interface GalleryPageProps {
     gallery?: Gallery;
@@ -233,6 +235,37 @@ export default class GalleryPage extends React.PureComponent<GalleryPageProps, G
         );
     }
 
+    getOgImage(): string {
+        const { gallery } = this.props;
+
+        if (!gallery?.items.length) {
+            return '';
+        }
+
+        const img = GalleryHelper.getGalleryCoverImage(gallery) || '';
+
+        try {
+            if (new URL(img).hostname !== location.hostname) {
+                return img;
+            }
+        } catch (e) {
+            return Asset.getFullImageUrl(img);
+        }
+
+        return '';
+    }
+
+    renderOgTags(): React.ReactNode {
+        const { gallery } = this.props;
+
+        return (
+            <Helmet>
+                {gallery && <meta property="og:title" content={getTranslation(gallery, 'en')?.title} />}
+                <meta property="og:image" content={this.getOgImage()} />
+            </Helmet>
+        );
+    }
+
     render(): React.ReactNode {
         const { gallery } = this.props;
 
@@ -242,6 +275,7 @@ export default class GalleryPage extends React.PureComponent<GalleryPageProps, G
 
         return (
             <div block="GalleryPage">
+                {this.renderOgTags()}
                 <h1 block="GalleryPage" elem="Title">{getTranslation(gallery, 'en')?.title}</h1>
                 {this.renderDescription()}
                 {this.renderGalleryItems()}

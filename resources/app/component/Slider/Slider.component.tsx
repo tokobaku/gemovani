@@ -3,6 +3,7 @@
  */
 
 import * as React from 'react';
+import { Helmet } from 'react-helmet';
 import { Slide } from 'Store/Slides/Slides.action';
 import { Tour } from 'Store/Tours/Tours.action';
 import { getTranslation } from 'Helper/Translation';
@@ -344,12 +345,27 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
         );
     }
 
+    renderOgTags(): React.ReactNode {
+        const { slides } = this.props;
+
+        if (!slides.length) {
+            return null;
+        }
+
+        return (
+            <Helmet>
+                <meta property="og:image" content={Asset.getFullImageUrl(slides[0].image)} />
+            </Helmet>
+        );
+    }
+
     render(): React.ReactNode {
         const { slides } = this.props;
         const isAndroid = Device.isAndroid();
 
         return (
             <div block="Slider" mods={{ isAndroid }}>
+                {this.renderOgTags()}
                 {this.renderArrow('left')}
                 <div
                     block="Slider"

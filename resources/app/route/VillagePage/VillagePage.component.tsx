@@ -4,6 +4,7 @@
 
 import * as React from 'react';
 import { debounce } from 'ts-debounce';
+import { Helmet } from 'react-helmet';
 import Asset from 'Helper/Asset';
 import { getTranslation } from 'Helper/Translation';
 import { Village } from 'Store/Villages/Villages.action';
@@ -73,6 +74,30 @@ export default class VillagePage extends React.PureComponent<VillagePageProps, V
         return <Map longitude={longitude} latitude={latitude} />;
     }
 
+    getDescriptionIntro(): string {
+        const { village } = this.props;
+        const villageDiv = document.createElement('div');
+
+        villageDiv.innerHTML = village ? getTranslation(village, 'en')?.description || '' : '';
+
+        return `${villageDiv.innerText.substr(0, 100)}...`;
+    }
+
+    renderOgTag(): React.ReactNode {
+        const { village } = this.props;
+        const title = village ? getTranslation(village, 'en')?.title : '';
+        const image = Asset.getFullImageUrl(village?.cover_image || '');
+        const description = this.getDescriptionIntro();
+
+        return (
+            <Helmet>
+                <meta property="og:title" content={title} />
+                <meta property="og:image" content={image} />
+                <meta property="og:description" content={description} />
+            </Helmet>
+        );
+    }
+
     render(): React.ReactNode {
         const { village } = this.props;
         const { isSticky } = this.state;
@@ -83,6 +108,7 @@ export default class VillagePage extends React.PureComponent<VillagePageProps, V
 
         return (
             <main block="VillagePage">
+                {this.renderOgTag()}
                 <article>
                     <Image
                         mix={{ block: 'VillagePage', elem: 'CoverImage' }}
