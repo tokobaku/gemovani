@@ -68,7 +68,16 @@ Route::get('{path?}', function ($path = '/') {
 
     // If use is search engine return pre-rendered content
     if ($isBot || true) {
-        return file_get_contents('localhost:3000/render/' . env('APP_URL') . $path);
+        $curl = curl_init('localhost:3000/render/' . urlencode(env('APP_URL') . $path));
+
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        return $data;
     }
 
     return view('welcome');
