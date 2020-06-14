@@ -62,6 +62,14 @@ Route::get('/sound/{path}', function (string $path) {
     ]);
 })->where('path', '.*');
 
-Route::get('{path}', function () {
+Route::get('{path}', function ($path) {
+    $isBot = isset($_SERVER['HTTP_USER_AGENT'])
+        && preg_match('/bot|crawl|slurp|spider|mediapartners/i', $_SERVER['HTTP_USER_AGENT']);
+
+    // If use is search engine return pre-rendered content
+    if ($isBot || true) {
+        return file_get_contents('localhost:3000/render/' . env('APP_URL') . $path);
+    }
+
     return view('welcome');
 })->where('path', '^(?!/?api.*$).*');
