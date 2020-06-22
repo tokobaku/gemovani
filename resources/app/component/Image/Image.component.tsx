@@ -1,3 +1,4 @@
+/* eslint-disable no-magic-numbers */
 /**
  * @author Tornike Bakuradze <tokobakuradze@gmail.com>
  */
@@ -24,6 +25,23 @@ export interface ImageState {
 }
 
 export const MAX_IMAGE_SIZE = 1024;
+
+export const IMAGE_SIZES = [
+    0,
+    16,
+    32,
+    64,
+    128,
+    256,
+    300,
+    400,
+    512,
+    600,
+    700,
+    800,
+    900,
+    1024
+];
 
 export default class Image extends React.PureComponent<ImageProps, ImageState> {
     private observer: IntersectionObserver | null = null;
@@ -81,6 +99,7 @@ export default class Image extends React.PureComponent<ImageProps, ImageState> {
         const { imageSrc } = this.state;
         const { initialImage, maxImageSize, src } = this.props;
         const width = this.getImageWidth() === 0 ? maxImageSize : Math.min(this.getImageWidth(), maxImageSize);
+        const desiredWidth = IMAGE_SIZES.find((imageSize) => imageSize >= width);
 
         if (!imageSrc) {
             return initialImage || src;
@@ -89,7 +108,7 @@ export default class Image extends React.PureComponent<ImageProps, ImageState> {
         try {
             new URL(imageSrc);
         } catch (e) {
-            return Asset.getImageUrl(imageSrc, { w: width });
+            return Asset.getImageUrl(imageSrc, { w: desiredWidth });
         }
 
         return imageSrc;

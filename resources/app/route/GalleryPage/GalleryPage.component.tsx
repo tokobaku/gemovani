@@ -4,15 +4,15 @@
 
 import * as React from 'react';
 import { Gallery, GalleryItem } from 'Store/Galleries/Galleries.action';
+import { Helmet } from 'react-helmet';
 import { getTranslation } from 'Helper/Translation';
 import GalleryHelper from 'Helper/GalleryHelper';
 import __ from 'Helper/__';
 import CustomMath from 'Helper/Math';
 import Image from 'Component/Image';
+import Asset from 'Helper/Asset';
 
 import 'Route/GalleryPage/GalleryPage.style';
-import Asset from "Helper/Asset";
-import {Helmet} from "react-helmet";
 
 export interface GalleryPageProps {
     gallery?: Gallery;
@@ -119,7 +119,7 @@ export default class GalleryPage extends React.PureComponent<GalleryPageProps, G
             const image = GalleryHelper.getGalleryItemImageSource(galleryItem, width);
 
             return (
-                <img
+                <Image
                     mix={{ block: 'GalleryPage', elem: 'Image' }}
                     src={image}
                     alt={image}
